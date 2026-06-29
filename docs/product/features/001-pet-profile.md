@@ -9,15 +9,31 @@ Allow users to add pets to their account and view each pet's profile so they can
 - As a user, I want to add a new pet so I can start recording its events and history.
 - As a user, I want to view a pet's profile card so I can see its details at a glance.
 
+## Pet profile fields
+
+| Field | Required | Notes |
+|---|---|---|
+| Photo | No | From camera roll; paw icon placeholder if not set |
+| Name | Yes | |
+| Species | Yes | Free text: cat, dog, parrot, etc. |
+| Breed | No | |
+| Gender | No | Options: Male, Female, Unknown |
+| Date of birth | No | |
+| Age | No | Calculated from date of birth; not entered by user |
+| Weight | No | Numeric with unit (kg); Dev: clarify if this is a field on the pet record or pulled from Growth Tracking |
+| Additional info | No | Free text; Dev: maps to existing notes field |
+
 ## Acceptance Criteria
 - [ ] User can see a list of all their pets via the Pets tab in the bottom navigation
-- [ ] Each item in the pet list shows: photo (or placeholder), name, species, and age (calculated from date of birth if provided)
+- [ ] Each item in the pet list shows: photo (or placeholder), name, species, and age (if date of birth is set)
 - [ ] User can tap a "+" button to open the Add Pet form
-- [ ] Add Pet form requires: name (text), species (text)
-- [ ] Add Pet form allows optionally: breed, date of birth, photo from camera roll, notes
+- [ ] Add Pet form requires: name, species
+- [ ] Add Pet form allows optionally: photo, breed, gender, date of birth, weight, additional info
+- [ ] Gender field is a selector with three options: Male, Female, Unknown
+- [ ] Weight field accepts a number; unit is kg
 - [ ] After saving, the new pet appears in the pet list immediately
 - [ ] User can tap a pet in the list to open its profile card
-- [ ] Pet profile card shows: photo (or placeholder), name, species, breed, date of birth, age, notes
+- [ ] Pet profile card shows all fields that were filled in; empty optional fields are hidden
 - [ ] If date of birth is provided, age is shown as "X years Y months" or "X months" for young animals
 - [ ] Empty pet list shows a friendly message and a prompt to add the first pet
 - [ ] If saving a pet fails, the user sees an error message; form stays open with all input preserved
@@ -42,6 +58,7 @@ Allow users to add pets to their account and view each pet's profile so they can
 - Pet photo not set: circular placeholder with a generic paw icon
 - Add Pet save error: toast message "Something went wrong. Please try again."
 - Add Pet name validation: inline error below the field
+- Add Pet species validation: inline error below the field
 
 ## Out of Scope
 - Editing an existing pet (separate feature)
@@ -49,3 +66,4 @@ Allow users to add pets to their account and view each pet's profile so they can
 - Sorting or filtering the pet list
 - Multiple photos per pet (covered in Photo Gallery feature)
 - Sharing a pet profile
+- Weight history chart (covered in Growth Tracking feature)
