@@ -38,7 +38,8 @@ Dev: pets table needs a `status` column (active / passed_away / removed) and a `
 - [ ] Hard delete removes all associated data: pet record, events, photos, measurements
 
 ## Button design
-Both buttons sit at the bottom of PetProfileScreen, full width, stacked vertically:
+Both buttons are pinned to the bottom of the screen as a fixed footer, full width, stacked vertically. They stay in place regardless of how much content is above, and remain visible even as the profile grows with more fields.
+
 - "My pet passed away" -- ghost button, neutral dark color; not red, this is an emotional moment not a destructive action
 - "Remove from my pets" -- ghost button, red (#BE4B37); signals a more permanent-feeling decision
 

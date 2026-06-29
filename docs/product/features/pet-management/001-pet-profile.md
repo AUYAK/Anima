@@ -15,8 +15,8 @@ Allow users to add pets to their account and view each pet's profile so they can
 |---|---|---|
 | Photo | No | From camera roll; paw icon placeholder if not set |
 | Name | Yes | |
-| Species | Yes | Free text: cat, dog, parrot, etc. |
-| Breed | No | |
+| Species | Yes | Searchable dropdown with seed data; custom text allowed if not in list |
+| Breed | No | Searchable dropdown filtered by selected species; custom text allowed if not in list |
 | Gender | No | Options: Male, Female, Unknown |
 | Date of birth | No | |
 | Age | No | Calculated from date of birth; not entered by user |
@@ -29,6 +29,8 @@ Allow users to add pets to their account and view each pet's profile so they can
 - [ ] User can tap a "+" button to open the Add Pet form
 - [ ] Add Pet form requires: name, species
 - [ ] Add Pet form allows optionally: photo from camera roll (real upload), breed, gender, date of birth, weight, additional info
+- [ ] Species field is a searchable dropdown: user can scroll the list or type to filter; selecting a value from the list saves that value; typing something not in the list saves the custom text directly
+- [ ] Breed field behaves the same as species but its list is filtered based on the selected species; if species is a custom value, breed field accepts free text only
 - [ ] Gender field is a selector with three options: Male, Female, Unknown
 - [ ] Weight field accepts a number; unit is kg; saved as the first Growth Tracking entry for this pet
 - [ ] After saving, the new pet appears in the pet list immediately
@@ -39,6 +41,13 @@ Allow users to add pets to their account and view each pet's profile so they can
 - [ ] If saving a pet fails, the user sees an error message; form stays open with all input preserved
 - [ ] Name field shows inline validation if submitted empty: "Name is required"
 - [ ] Species field shows inline validation if submitted empty: "Species is required"
+
+## Species and breed seed data
+Dev: species and breeds must be stored in the database (not hardcoded in the app) so we can add more without a new release. Suggested structure: a `species` table and a `breeds` table with a species reference. Populate with seed data at migration time.
+
+Starter species list (expand as needed): Cat, Dog, Rabbit, Parrot, Hamster, Guinea pig, Turtle, Fish, Snake, Ferret, Chinchilla, Lizard, Frog, Hedgehog.
+
+Breeds should cover at minimum the most common species (cat and dog). Dog breeds alone number 300+; seed with the most popular 50-100 to start.
 
 ## Screens
 - PetListScreen: full list of the user's pets; entry point from the Pets tab
