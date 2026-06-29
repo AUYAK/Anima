@@ -19,21 +19,29 @@ Dev: pets table needs a `status` column (active / passed_away / removed) and a `
 - As a user whose pet has died, I want to mark them as passed away so they no longer appear in my active list but I keep all their history.
 - As a user who no longer has a pet, I want to remove them from my list without worrying I am deleting memories.
 - As a user, I want to permanently delete all data for a pet if I decide I never want to see it again.
+- As a user who tapped the wrong button, I want to undo the action immediately so my pet is restored to active.
+- As a user, I want to see a confirmation message after an action so I know it completed successfully.
 
 ## Acceptance Criteria
 
 ### Phase 1 (this feature)
 - [ ] PetProfileScreen shows two buttons at the bottom: "My pet passed away" and "Remove from my pets"
-- [ ] "My pet passed away" shows a confirmation: "Are you sure? [PetName] will be moved out of your active pets. All their history is kept." with Confirm and Cancel
+- [ ] "My pet passed away" shows a confirmation dialog: "Are you sure? [PetName] will be moved out of your active pets. All their history is kept." with Confirm and Cancel
 - [ ] Confirming sets status to passed_away; pet disappears from the active pets list immediately
-- [ ] "Remove from my pets" shows a confirmation: "Remove [PetName] from your list? You can still find them in your Inactive pets." with Confirm and Cancel
+- [ ] After confirming "passed away": success popup appears with message "[PetName] has been moved to Inactive. All their history is safe." with a close button
+- [ ] "Remove from my pets" shows a confirmation dialog: "Remove [PetName] from your list? You can still find them in your Inactive pets." with Confirm and Cancel
 - [ ] Confirming sets status to removed; pet disappears from the active pets list immediately
+- [ ] After confirming "remove": success popup appears with message "[PetName] has been removed from your active pets." with a close button
+- [ ] Both success popups include an "Undo" button that restores the pet to active status and closes the popup
+- [ ] Undo is only available from the success popup; once the popup is dismissed it is gone
 - [ ] Neither action deletes any data (photos, events, measurements are all preserved)
 
 ### Phase 2 (future -- Inactive tab)
 - [ ] Pets screen gains a second tab: Active | Inactive
 - [ ] Inactive tab shows all pets with status passed_away or removed
 - [ ] Each inactive pet shows a label indicating its status ("Passed away" or "Removed")
+- [ ] Each inactive pet has a "Restore to active" button that sets status back to active and moves the pet back to the Active tab
+- [ ] Restoring shows a success popup: "[PetName] is back in your active pets."
 - [ ] From Inactive, user can permanently delete a pet with a hard delete confirmation: "This will delete [PetName] and all their data forever. This cannot be undone." Requires typing the pet name to confirm.
 - [ ] Hard delete removes all associated data: pet record, events, photos, measurements
 
@@ -59,6 +67,5 @@ Both buttons are pinned to the bottom of the screen as a fixed footer, full widt
 - Status change fails: toast "Something went wrong. Please try again." Pet status unchanged.
 
 ## Out of Scope
-- Reactivating a pet (restoring from inactive to active)
 - Exporting pet data before deletion
 - Memorial / tribute screen for passed away pets (future idea)

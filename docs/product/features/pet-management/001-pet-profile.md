@@ -7,7 +7,18 @@ Allow users to add pets to their account and view each pet's profile so they can
 ## User Stories
 - As a user, I want to see a list of all my pets so I can pick which one to manage.
 - As a user, I want to add a new pet so I can start recording its events and history.
-- As a user, I want to view a pet's profile card so I can see its details at a glance.
+- As a user, I want to view a pet's profile with tabs so I can navigate between their info, photos, and timeline.
+
+## PetProfileScreen tab structure
+PetProfileScreen has three tabs. The pet's photo, name, and species are always visible in the header above the tabs regardless of which tab is active.
+
+| Tab | Content | Specced in |
+|---|---|---|
+| General Info | All pet fields (breed, gender, DOB, age, weight, additional info) | This file |
+| Gallery | Pet photos -- upload, view, delete | Feature 004 (Photo Gallery) |
+| Timeline | Biography and life events in chronological order | Feature 009 (Pet Timeline) -- TBD |
+
+Dev: lifecycle buttons ("My pet passed away" / "Remove from my pets") placement across tabs -- confirm with PM before building.
 
 ## Pet profile fields
 

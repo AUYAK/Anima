@@ -30,3 +30,4 @@
 | 006 | Training Courses | Learning | Planned | Guided care and training lessons |
 | 007 | Localization | Platform | Ready | Russian + English based on device language |
 | 008 | Pet Lifecycle | Pet Management | Draft | Passed away + remove flows; inactive tab in Phase 2 |
+| 009 | Pet Timeline | Pet Management | Planned | Biography tab on pet profile; auto-events + user events |
