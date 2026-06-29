@@ -6,15 +6,26 @@
 - Draft: being written, not yet ready for dev
 - Planned: identified, not yet specced
 
+## Epics
+
+| Epic | Description |
+|---|---|
+| Pet Management | Adding, viewing, and managing pet profiles |
+| Home | Main screen experience after login |
+| Health & Care | Events, reminders, and growth tracking |
+| Gallery | Pet photo album |
+| Learning | Training and care courses |
+| Platform | Infrastructure: auth, localization, notifications |
+
 ## Features
 
-| # | Feature | Status | Notes |
-|---|---------|--------|-------|
-| - | Auth (email/password + Google) | Done | No feature doc; already shipped |
-| 001 | Pet Profile | Ready | Add and view pets |
-| 002 | Home Dashboard | Ready | Topbar with current pet; empty body for now |
-| 003 | Event Calendar | Planned | Vaccines, grooming, vet visits, birthdays |
-| 004 | Photo Gallery | Planned | Per-pet photo album |
-| 005 | Growth Tracking | Planned | Weight and height over time |
-| 006 | Training Courses | Planned | Guided care and training lessons |
-| 007 | Localization | Planned | Russian + English based on device language |
+| # | Feature | Epic | Status | Notes |
+|---|---------|------|--------|-------|
+| - | Auth (email/password + Google) | Platform | Done | No feature doc; already shipped |
+| 001 | Pet Profile | Pet Management | Ready | Add and view pets |
+| 002 | Home Dashboard | Home | Ready | Topbar with current pet; empty body for now |
+| 003 | Event Calendar | Health & Care | Planned | Vaccines, grooming, vet visits, birthdays |
+| 004 | Photo Gallery | Gallery | Planned | Per-pet photo album |
+| 005 | Growth Tracking | Health & Care | Planned | Weight and height over time |
+| 006 | Training Courses | Learning | Planned | Guided care and training lessons |
+| 007 | Localization | Platform | Ready | Russian + English based on device language |

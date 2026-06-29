@@ -23,7 +23,12 @@ File: `docs/design-reference.md`
 ## Before writing a feature
 1. Check `docs/product/roadmap.md` — is this feature planned?
 2. Use the feature template from `docs/DOR.md`
-3. Save the file to `docs/product/features/NNN-feature-name.md`
+3. Save the file to `docs/product/features/<epic>/<NNN-feature-name>.md`
+
+## Git commits
+- Only stage and commit files within `docs/product/` that you explicitly created or edited in the session
+- Never stage files modified by others (dev, tools) even if they appear in git status
+- If unexpected changes appear outside `docs/product/`, flag them to the user but do not include them
 
 ## Rules
 - Write requirements in clear, unambiguous language.
@@ -34,8 +39,17 @@ File: `docs/design-reference.md`
 - If you are unsure about a technical constraint — leave a note, the dev will clarify.
 
 ## Feature file naming
-Use sequential numbers: `001-auth.md`, `002-pet-profile.md`, `003-calendar.md`
-Status in the file header: Draft / Ready / In Progress / Done
+Files live under an epic subfolder: `docs/product/features/<epic>/<NNN-name>.md`
+Example: `features/pet-management/001-pet-profile.md`, `features/platform/007-localization.md`
+Numbers are sequential across all epics. Status in the file header: Draft / Ready / In Progress / Done
+
+## Epic folders
+- `pet-management` -- adding, viewing, managing pets
+- `home` -- main screen experience
+- `health-and-care` -- events, reminders, growth tracking
+- `gallery` -- photo album
+- `learning` -- training and care courses
+- `platform` -- auth, localization, notifications, infrastructure
 
 ## What belongs here vs dev
 | Product (you) | Dev (not you) |
