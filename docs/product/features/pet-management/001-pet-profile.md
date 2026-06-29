@@ -29,8 +29,10 @@ Allow users to add pets to their account and view each pet's profile so they can
 - [ ] User can tap a "+" button to open the Add Pet form
 - [ ] Add Pet form requires: name, species
 - [ ] Add Pet form allows optionally: photo from camera roll (real upload), breed, gender, date of birth, weight, additional info
-- [ ] Species field is a searchable dropdown: user can scroll the list or type to filter; selecting a value from the list saves that value; typing something not in the list saves the custom text directly
+- [ ] Species field is a searchable dropdown: when opened it shows the full list scrollable from top; user can scroll or type to filter; selecting a value saves it; typing something not in the list saves the custom text directly
+- [ ] Species list is sorted by popularity, not alphabetically (Dog and Cat first, exotic species last)
 - [ ] Breed field behaves the same as species but its list is filtered based on the selected species; if species is a custom value, breed field accepts free text only
+- [ ] Breed list is sorted by popularity within each species
 - [ ] Gender field is a selector with three options: Male, Female, Unknown
 - [ ] Weight field accepts a number; unit is kg; saved as the first Growth Tracking entry for this pet
 - [ ] After saving, the new pet appears in the pet list immediately
@@ -45,9 +47,27 @@ Allow users to add pets to their account and view each pet's profile so they can
 ## Species and breed seed data
 Dev: species and breeds must be stored in the database (not hardcoded in the app) so we can add more without a new release. Suggested structure: a `species` table and a `breeds` table with a species reference. Populate with seed data at migration time.
 
-Starter species list (expand as needed): Cat, Dog, Rabbit, Parrot, Hamster, Guinea pig, Turtle, Fish, Snake, Ferret, Chinchilla, Lizard, Frog, Hedgehog.
+Dev: add a `sort_order` integer column to the `species` and `breeds` tables. Lower number = shown first. Populate with the order below.
 
-Breeds should cover at minimum the most common species (cat and dog). Dog breeds alone number 300+; seed with the most popular 50-100 to start.
+Species sorted by popularity (seed in this order):
+1. Dog
+2. Cat
+3. Rabbit
+4. Hamster
+5. Guinea pig
+6. Parrot
+7. Fish
+8. Turtle
+9. Snake
+10. Ferret
+11. Chinchilla
+12. Lizard
+13. Hedgehog
+14. Frog
+
+Breeds: sorted by popularity within each species. Dog breeds alone number 300+; seed the most popular 50-100 to start (Labrador, Golden Retriever, German Shepherd, French Bulldog, Bulldog, Poodle, Beagle, Rottweiler, Husky, Dachshund etc. first). Same approach for Cat (Persian, Maine Coon, Siamese, British Shorthair, Ragdoll etc. first).
+
+Dev: also ensure the dropdown shows the full list scrollable from the top when opened without any text typed. Do not limit visible items or start mid-list.
 
 ## Screens
 - PetListScreen: full list of the user's pets; entry point from the Pets tab

@@ -4,6 +4,15 @@ Ideas that are not ready to spec but worth remembering. Review during roadmap pl
 
 ---
 
+## Social / pet sharing
+
+**Context:** Anima is currently a private personal diary per user.
+**Idea:** Let users share their pets and photos with chosen people, and view other users' pet profiles. Creates a social graph around pets -- follow, share, discover. Modeled loosely on Instagram Stories for the topbar UX. Key virality driver.
+**Why it was deferred:** Major product direction change. Requires: public/private profile concept, follow/unfollow mechanics, content feed, privacy controls, content moderation strategy. Needs a dedicated product exploration session before spec.
+**Trigger to revisit:** When core pet management, calendar, and gallery features are stable and we are ready to think about growth.
+
+---
+
 ## Pet switcher in topbar
 
 **Context:** Home screen topbar currently shows the most recently viewed pet (photo + name).
