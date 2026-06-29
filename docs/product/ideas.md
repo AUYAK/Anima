@@ -30,3 +30,12 @@ Ideas that are not ready to spec but worth remembering. Review during roadmap pl
 **Trigger to revisit:** After Growth Tracking and event reminders are shipped.
 
 ---
+
+## Memorial / tribute screen for passed away pets
+
+**Context:** When a pet is marked as passed away, their status is stored and they move to the Inactive tab.
+**Idea:** A dedicated memorial screen for passed away pets -- a beautiful, read-only view of their photos, key milestones, and a personal note from the owner. Something that feels like a tribute, not just a profile.
+**Why it was deferred:** Requires the Inactive tab (Phase 2 of Pet Lifecycle) and Photo Gallery to exist first.
+**Trigger to revisit:** After Pet Lifecycle Phase 2 and Photo Gallery are shipped.
+
+---

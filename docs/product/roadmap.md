@@ -29,3 +29,4 @@
 | 005 | Growth Tracking | Health & Care | Planned | Weight and height over time |
 | 006 | Training Courses | Learning | Planned | Guided care and training lessons |
 | 007 | Localization | Platform | Ready | Russian + English based on device language |
+| 008 | Pet Lifecycle | Pet Management | Draft | Passed away + remove flows; inactive tab in Phase 2 |
