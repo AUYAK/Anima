@@ -17,3 +17,4 @@
 | 004 | Photo Gallery | Planned | Per-pet photo album |
 | 005 | Growth Tracking | Planned | Weight and height over time |
 | 006 | Training Courses | Planned | Guided care and training lessons |
+| 007 | Localization | Planned | Russian + English based on device language |

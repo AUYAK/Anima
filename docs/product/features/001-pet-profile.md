@@ -20,7 +20,7 @@ Allow users to add pets to their account and view each pet's profile so they can
 | Gender | No | Options: Male, Female, Unknown |
 | Date of birth | No | |
 | Age | No | Calculated from date of birth; not entered by user |
-| Weight | No | Numeric with unit (kg); Dev: clarify if this is a field on the pet record or pulled from Growth Tracking |
+| Weight | No | Numeric with unit (kg); saved as the first Growth Tracking entry for this pet |
 | Additional info | No | Free text; Dev: maps to existing notes field |
 
 ## Acceptance Criteria
@@ -28,9 +28,9 @@ Allow users to add pets to their account and view each pet's profile so they can
 - [ ] Each item in the pet list shows: photo (or placeholder), name, species, and age (if date of birth is set)
 - [ ] User can tap a "+" button to open the Add Pet form
 - [ ] Add Pet form requires: name, species
-- [ ] Add Pet form allows optionally: photo, breed, gender, date of birth, weight, additional info
+- [ ] Add Pet form allows optionally: photo from camera roll (real upload), breed, gender, date of birth, weight, additional info
 - [ ] Gender field is a selector with three options: Male, Female, Unknown
-- [ ] Weight field accepts a number; unit is kg
+- [ ] Weight field accepts a number; unit is kg; saved as the first Growth Tracking entry for this pet
 - [ ] After saving, the new pet appears in the pet list immediately
 - [ ] User can tap a pet in the list to open its profile card
 - [ ] Pet profile card shows all fields that were filled in; empty optional fields are hidden
