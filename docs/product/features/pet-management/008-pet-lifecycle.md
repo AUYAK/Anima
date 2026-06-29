@@ -41,9 +41,11 @@ Dev: pets table needs a `status` column (active / passed_away / removed) and a `
 - [ ] Inactive tab shows all pets with status passed_away or removed
 - [ ] Each inactive pet shows a label indicating its status ("Passed away" or "Removed")
 - [ ] Each inactive pet has a "Restore to active" button that sets status back to active and moves the pet back to the Active tab
-- [ ] Restoring shows a success popup: "[PetName] is back in your active pets."
-- [ ] From Inactive, user can permanently delete a pet with a hard delete confirmation: "This will delete [PetName] and all their data forever. This cannot be undone." Requires typing the pet name to confirm.
-- [ ] Hard delete removes all associated data: pet record, events, photos, measurements
+- [ ] Restoring shows a success popup: "[PetName] is back in your active pets!"
+- [ ] From Inactive, user can permanently delete a pet; tapping delete shows a confirmation dialog with the text: "Permanently remove [PetName]? All photos, events, and history will be deleted. This cannot be undone." with a text input requiring the user to type the pet name, and buttons "Delete permanently" and "Cancel"
+- [ ] On confirm, success popup shows: "[PetName] has been removed."
+- [ ] Hard delete removes all associated data visible to the user: pet record, events, photos, measurements
+- [ ] Dev: even hard delete is a soft delete in the database -- data is flagged as deleted, not physically removed. The user-facing language says permanent; the DB implementation preserves data for safety.
 
 ## Button design
 Both buttons are pinned to the bottom of the screen as a fixed footer, full width, stacked vertically. They stay in place regardless of how much content is above, and remain visible even as the profile grows with more fields.
