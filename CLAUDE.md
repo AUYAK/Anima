@@ -3,7 +3,7 @@
 ## Roles
 - **Dev chat** (VS Code + Claude Code): read `docs/roles/CLAUDE.dev.md` before starting work
 - **Product chat** (Claude Desktop or VS Code): read `docs/roles/CLAUDE.product.md` before starting work
-- Feature requirements live in `docs/product/features/` — devs read, PMs write
+- Feature requirements live in `docs/product/features/<epic>/` — devs read, PMs write
 - DOR checklist and feature template: `docs/DOR.md`
 
 ## What this is
@@ -15,7 +15,7 @@ Free, no monetization for now.
 ## Tech stack
 - **Mobile**: Flutter (Dart)
 - **Backend/DB**: Supabase (PostgreSQL under the hood), local via Docker Compose
-- **Auth**: Supabase Auth (email/password, later social)
+- **Auth**: Supabase Auth (email/password + Google Sign-In on Android; Apple Sign-In planned)
 - **Storage**: Supabase Storage (pet photos)
 
 ## Project structure
@@ -34,11 +34,21 @@ anima/
 │   │   └── shared/  # widgets, utils
 │   └── test/
 ├── supabase/
-│   ├── migrations/  # SQL migration files
-│   └── seed.sql
+│   └── migrations/  # SQL migration files
 └── docs/
-    ├── adr/         # Architecture Decision Records
-    └── schema.md    # DB schema reference
+    ├── adr/              # Architecture Decision Records
+    ├── schema.md         # DB schema reference
+    ├── design-reference.md  # Figma design tokens
+    └── product/
+        ├── roadmap.md
+        ├── todo.md
+        └── features/           # Feature specs (PMs write, devs read)
+            ├── pet-management/ # 001-pet-profile.md
+            ├── home/           # 002-home-dashboard.md
+            ├── platform/       # 007-localization.md
+            ├── health-and-care/
+            ├── gallery/
+            └── learning/
 ```
 
 ## How to run
