@@ -29,6 +29,7 @@ All fields on General Info tab are editable except Age (calculated, never entere
 | Breed | Searchable dropdown filtered by species |
 | Gender | Selector: Male / Female / Unknown |
 | Date of birth | Date picker |
+| Weight | Numeric input (kg); saving creates a new measurement entry with current timestamp |
 | Additional info | Multi-line text input |
 
 ## Acceptance Criteria
@@ -51,4 +52,4 @@ No new screens. All editing happens inline on PetProfileScreen.
 ## Out of Scope
 - Editing the pet's name directly from the profile header (done via edit mode on General Info tab)
 - Per-field save (all changes saved together with one Save button)
-- Editing weight (weight lives in the measurements table; editing belongs to Growth Tracking feature 005)
+- Weight history chart and manual measurement log (covered in Growth Tracking feature 005)
