@@ -26,6 +26,24 @@ class PetsRepository {
     }).eq('id', id);
   }
 
+  Future<List<PetModel>> fetchInactivePets() async {
+    final userId = _supabase.auth.currentUser!.id;
+    final data = await _supabase
+        .from('pets')
+        .select()
+        .eq('owner_id', userId)
+        .inFilter('status', ['passed_away', 'removed'])
+        .order('status_changed_at', ascending: false);
+    return (data as List).map((e) => PetModel.fromJson(e as Map<String, dynamic>)).toList();
+  }
+
+  Future<void> hardDeletePet(String petId) async {
+    await _supabase.from('pets').update({
+      'status': 'hard_deleted',
+      'status_changed_at': DateTime.now().toUtc().toIso8601String(),
+    }).eq('id', petId);
+  }
+
   Future<PetModel> getPet(String id) async {
     final data = await _supabase.from('pets').select().eq('id', id).single();
     return PetModel.fromJson(data);
@@ -113,7 +131,31 @@ class PetsNotifier extends AsyncNotifier<List<PetModel>> {
     await ref.read(petsRepositoryProvider).updatePetStatus(petId, status);
     final current = state.valueOrNull ?? [];
     state = AsyncData(current.where((p) => p.id != petId).toList());
+    ref.invalidate(inactivePetsProvider);
+  }
+
+  Future<void> restoreToActive(PetModel pet) async {
+    await ref.read(petsRepositoryProvider).updatePetStatus(pet.id, 'active');
+    final updated = await ref.read(petsRepositoryProvider).fetchPets();
+    state = AsyncData(updated);
+    ref.invalidate(inactivePetsProvider);
   }
 }
 
 final petsProvider = AsyncNotifierProvider<PetsNotifier, List<PetModel>>(PetsNotifier.new);
+
+class InactivePetsNotifier extends AsyncNotifier<List<PetModel>> {
+  @override
+  Future<List<PetModel>> build() {
+    return ref.read(petsRepositoryProvider).fetchInactivePets();
+  }
+
+  Future<void> hardDelete(String petId) async {
+    await ref.read(petsRepositoryProvider).hardDeletePet(petId);
+    final current = state.valueOrNull ?? [];
+    state = AsyncData(current.where((p) => p.id != petId).toList());
+  }
+}
+
+final inactivePetsProvider =
+    AsyncNotifierProvider<InactivePetsNotifier, List<PetModel>>(InactivePetsNotifier.new);

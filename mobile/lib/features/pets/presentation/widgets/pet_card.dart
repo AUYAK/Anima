@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/core/theme/app_theme.dart';
 import 'package:mobile/features/pets/data/pet_model.dart';
 import 'package:mobile/shared/utils/age_utils.dart';
 import 'package:mobile/shared/widgets/pet_avatar.dart';
@@ -43,6 +44,10 @@ class PetCard extends StatelessWidget {
                             color: const Color(0xFF8A8A8A),
                           ),
                     ),
+                    if (pet.status != 'active') ...[
+                      const SizedBox(height: 6),
+                      _StatusChip(status: pet.status),
+                    ],
                   ],
                 ),
               ),
@@ -50,6 +55,29 @@ class PetCard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _StatusChip extends StatelessWidget {
+  final String status;
+  const _StatusChip({required this.status});
+
+  @override
+  Widget build(BuildContext context) {
+    final isPassed = status == 'passed_away';
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: isPassed ? const Color(0xFFE8E8E8) : const Color(0xFFFDE8E6),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        isPassed ? 'Passed away' : 'Removed',
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: isPassed ? const Color(0xFF555555) : AppColors.error,
+            ),
       ),
     );
   }
