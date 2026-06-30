@@ -5,21 +5,18 @@ Status: Ready
 Allow users to update any field on a pet's profile directly from the General Info tab without navigating to a separate screen.
 
 ## User Stories
-- As a user, I want to see which fields I can edit so I don't have to guess.
-- As a user, I want to edit a single field without affecting the rest of the profile.
-- As a user, I want to save my changes and get confirmation that they were saved.
+- As a user, I want a clear way to enter edit mode so I know my changes are intentional.
+- As a user, I want to edit multiple fields at once and save them all together.
+- As a user, I want to cancel editing without saving if I changed my mind.
 
 ## Inline editing pattern
-Each field on the General Info tab has a small pencil icon on the right side of the row.
-Tapping the pencil icon (or anywhere on the field row) makes that field editable inline.
-The rest of the fields remain in view mode while one field is being edited.
+A pencil icon sits in the top-right corner of the PetProfileScreen header, visible on all tabs.
+Tapping it switches the General Info tab into edit mode -- all fields become editable simultaneously.
+The pencil icon is replaced by Save and Cancel in the header.
 
-When any field is in edit state:
-- A "Save changes" button appears at the bottom of the General Info tab (above the lifecycle buttons)
-- A "Cancel" option dismisses the edit and reverts the field to its previous value
-- If the user navigates away with unsaved changes, a dialog appears: "You have unsaved changes. Save or discard?" with Save and Discard buttons
-
-Dev: confirm placement of Save / Cancel controls with PM before building.
+Tapping Save commits all changes and returns to view mode.
+Tapping Cancel discards all changes and returns to view mode.
+If the user taps back or switches tabs while in edit mode, a dialog appears: "You have unsaved changes. Save or discard?" with Save and Discard buttons.
 
 ## Editable fields
 All fields on General Info tab are editable except Age (calculated, never entered manually):
@@ -36,28 +33,22 @@ All fields on General Info tab are editable except Age (calculated, never entere
 | Additional info | Multi-line text input |
 
 ## Acceptance Criteria
-- [ ] Every editable field on the General Info tab shows a small pencil icon on the right
-- [ ] Tapping the pencil icon or the field row makes that field editable inline
-- [ ] Only one field is in edit mode at a time; tapping another field's pencil saves the current pending change first
-- [ ] While a field is being edited, a "Save changes" button is visible at the bottom of the tab
-- [ ] Tapping "Save changes" saves all pending edits and returns all fields to view mode
-- [ ] Tapping "Cancel" reverts the field to its previous value with no changes saved
-- [ ] If the user taps back or switches tabs with unsaved changes, a dialog appears: "You have unsaved changes. Save or discard?"
-- [ ] After saving, a success toast appears: "Changes saved"
-- [ ] If saving fails, a toast appears: "Something went wrong. Please try again." Field stays in edit mode.
-- [ ] Name field cannot be saved empty: inline validation "Name is required"
-- [ ] Species field cannot be saved empty: inline validation "Species is required"
+- [ ] A pencil icon is visible in the top-right corner of PetProfileScreen header
+- [ ] Tapping the pencil icon switches General Info tab to edit mode; all fields become editable simultaneously
+- [ ] In edit mode, the pencil icon is replaced by Save and Cancel in the header
+- [ ] Tapping Save commits all changes; success toast appears: "Changes saved"; screen returns to view mode
+- [ ] Tapping Cancel discards all changes; screen returns to view mode with original values
+- [ ] If user taps back or switches tabs in edit mode, dialog appears: "You have unsaved changes. Save or discard?"
+- [ ] Save fails: toast "Something went wrong. Please try again." Screen stays in edit mode.
+- [ ] Name cannot be saved empty: inline validation "Name is required"
+- [ ] Species cannot be saved empty: inline validation "Species is required"
 
 ## Screens
-- PetProfileScreen General Info tab: gains pencil icons per field and inline edit state
+- PetProfileScreen: gains pencil icon in header; General Info tab gains edit mode state
 
 ## Navigation
 No new screens. All editing happens inline on PetProfileScreen.
 
-## Empty / Error States
-- Save error: toast "Something went wrong. Please try again."
-- Unsaved changes on back/tab switch: dialog "You have unsaved changes. Save or discard?" with Save and Discard buttons
-
 ## Out of Scope
-- Editing the pet's name from the profile header (name is editable via the General Info tab field)
-- Bulk edit mode (editing multiple fields simultaneously with a single save)
+- Editing the pet's name directly from the profile header (done via edit mode on General Info tab)
+- Per-field save (all changes saved together with one Save button)
