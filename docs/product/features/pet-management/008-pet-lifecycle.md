@@ -33,7 +33,9 @@ Dev: pets table needs a `status` column (active / passed_away / removed) and a `
 - [ ] Confirming sets status to removed; pet disappears from the active pets list immediately
 - [ ] After confirming "remove": success popup appears with message "[PetName] has been removed from your active pets." with a close button
 - [ ] Both success popups include an "Undo" button that restores the pet to active status and closes the popup
-- [ ] Undo is only available from the success popup; once the popup is dismissed it is gone
+- [ ] Success popup auto-dismisses after 5 seconds; after that undo is no longer available
+- [ ] Optional: progress bar inside the popup showing time remaining before auto-dismiss
+- [ ] Undo is only available while the popup is visible; once dismissed it is gone
 - [ ] Neither action deletes any data (photos, events, measurements are all preserved)
 
 ### Phase 2 (future -- Inactive tab)
