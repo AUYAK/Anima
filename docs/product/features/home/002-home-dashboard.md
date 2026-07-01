@@ -15,10 +15,10 @@ The topbar is a horizontally scrollable row of pet avatars, styled similarly to 
 - Pet name displayed below the avatar
 - Avatars are larger than a standard icon -- prominent enough to be a key navigation element
 - Row scrolls horizontally if the user has many pets
-- Sorted left to right by most recent activity (most recent on the left)
-- For now, "most recent activity" means most recently updated pet record; will switch to notification-based sorting when push notifications are shipped (see todo.md)
+- Sorted left to right by most recently updated (most recent on the left)
+- Dev: sort by `updated_at` desc; add `updated_at` column to pets table via migration if not present; will switch to notification-based sorting when push notifications are shipped (see todo.md)
 
-Dev: where exactly should the topbar sit on the HomeScreen (top of screen below the app bar, or as the app bar itself)? Please confirm placement before building.
+The stories row sits at the very top of the screen with no AppBar above it -- same pattern as Instagram. HomeScreen has no AppBar for now. Actions (notifications, settings) will be added to an AppBar when future features require them.
 
 ## Acceptance Criteria
 - [ ] After login the user lands on the Home screen
