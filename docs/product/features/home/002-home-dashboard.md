@@ -10,7 +10,8 @@ Give the user a home screen with all their pets visible in the topbar, sorted by
 - As a new user with no pets, I want the home screen to prompt me to add my first pet.
 
 ## Topbar design
-The topbar is a horizontally scrollable row of pet avatars, styled similarly to Instagram Stories:
+The topbar is a horizontally scrollable row of the user's own pet avatars. Purpose: navigate between pets and surface per-pet activity (notification badges in future).
+
 - Each avatar is a circular photo (or paw icon placeholder if no photo set)
 - Pet name displayed below the avatar
 - Avatars are larger than a standard icon -- prominent enough to be a key navigation element
@@ -18,7 +19,7 @@ The topbar is a horizontally scrollable row of pet avatars, styled similarly to 
 - Sorted left to right by most recently updated (most recent on the left)
 - Dev: sort by `updated_at` desc; add `updated_at` column to pets table via migration if not present; will switch to notification-based sorting when push notifications are shipped (see todo.md)
 
-The stories row sits at the very top of the screen with no AppBar above it -- same pattern as Instagram. HomeScreen has no AppBar for now. Actions (notifications, settings) will be added to an AppBar when future features require them.
+The topbar row sits at the very top of the screen with no AppBar above it. HomeScreen has no AppBar for now -- actions (notifications, settings) will be added when future features require them.
 
 ## Acceptance Criteria
 - [ ] After login the user lands on the Home screen
