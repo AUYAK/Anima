@@ -22,6 +22,12 @@ Type: Russian restaurant guide app. Used as inspiration for design language, pro
 - **Status badge on card**: Small colored pill overlaid on hero image (Platinum / Gold / Purple) → adapt as pet health status or milestone badge
 - **Horizontal scroll collections** inside a vertical feed — photos strip, upcoming events strip
 - **Dark gradient overlay** on hero photo with text on top — exactly what we're building in feature 011
+- **Progress circles** (not bars) for XP/milestones — feels more premium than progress bars
+- **"X общих Y" counter**: "3 общих ресторана" between friends → for Anima: "same breed" or "same city" social signal
+- **Amenity tag strip**: inline dots "Терраса · Панорама · Дресс-код" → adapt as pet trait tags "Active · Indoor · Vaccinated"
+- **Check-in velocity on card**: "247 чекинов за неделю" → for courses: "87 owners completed this week"
+- **Content-first + quiz-second** (template-3): feed with events/discoveries as home, quiz accessible but not forced
+- **3-question quiz, always**: never more than 3 questions for AI recommendation — every AI template uses exactly 3
 
 ---
 
