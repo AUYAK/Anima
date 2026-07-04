@@ -33,3 +33,5 @@
 | 009 | Pet Timeline | Pet Management | Planned | Biography tab on pet profile; auto-events + user events |
 | 010 | Edit Pet | Pet Management | Ready | Inline editing with pencil icon per field |
 | 011 | Pet Profile Redesign | Pet Management | Ready | Rich scrollable profile: hero, health snapshot, photo strip, timeline strip |
+| 012 | Moments | Pet Management | Ready | Daily photo + tag log; center tab entry; feeds timeline, gallery, streaks |
+| 013 | Achievements & Titles | Pet Management | Ready | WoW-style points + titles; 5 categories; streak/health/memory/learning/together |
