@@ -33,5 +33,5 @@
 | 009 | Pet Timeline | Pet Management | Ready | Continuous vertical life road on profile Timeline tab; placeholder → planned → completed |
 | 010 | Edit Pet | Pet Management | Ready | Inline editing with pencil icon per field |
 | 011 | Pet Profile Redesign | Pet Management | Ready | Collapsing hero + two tabs: Timeline (default) and Info |
-| 012 | Moments | Pet Management | Ready | Daily photo + tag log; center tab entry; feeds timeline, gallery, streaks |
+| 012 | Moments | Pet Management | Ready | Daily photo + tag log; center tab entry; feeds timeline, gallery, achievement quests |
 | 013 | Achievements & Titles | Pet Management | Ready | WoW-style points + titles; 5 categories; streak/health/memory/learning/together |

@@ -17,7 +17,6 @@ Collapsing hero on top, then two tabs: **Timeline** (default) and **Info**. No s
 │   [hero photo - 300dp]      │  <- collapses into a compact
 │   Name · Species            │     bar on scroll
 │   Age · Together · Birthday │
-│   🔥 14 days in a row       │
 ├─────────────────────────────┤
 │   Timeline    |    Info     │  <- tabs, Timeline default
 ├─────────────────────────────┤
@@ -34,7 +33,7 @@ Collapsing hero on top, then two tabs: **Timeline** (default) and **Info**. No s
 - Full-width photo, 300dp expanded (or large paw icon placeholder if no photo)
 - Gradient overlay at the bottom; on top of it: pet name (large), species (small, muted)
 - Below photo: age ("4 years 2 months"), time together ("With you for 3 years 8 months", from pet created_at), next birthday if DOB set ("Birthday in X days", shown when ≤60 days)
-- Streak from Moments: "🔥 N days in a row" — hidden when 0
+- No streak counter here: consistency lives in Achievements (013) as quest progress
 - **Collapsing behavior**: on scroll, hero collapses into a compact app bar — pet name + back arrow + pencil remain visible; expands back when scrolling to top
 - Back arrow top-left; pencil top-right → edit mode (feature 010): switches to the Info tab with fields editable, hero stays visible
 
@@ -73,7 +72,7 @@ Top to bottom:
 - [ ] Age as "X years Y months" ("X months" for young animals)
 - [ ] Time together as "With you for X years Y months"
 - [ ] Next birthday shown when DOB set and ≤60 days away
-- [ ] Streak "🔥 N days in a row" shown when ≥1, hidden at 0
+- [ ] No streak counter in the hero
 - [ ] Hero collapses to compact bar on scroll; name, back, pencil stay visible
 - [ ] Pencil opens edit mode on the Info tab (feature 010)
 

@@ -73,11 +73,11 @@ After photo is selected:
 
 ---
 
-## Streak tracking
-The system tracks consecutive days with at least one Moment per pet.
+## Streak tracking (internal)
+The system tracks consecutive days with at least one Moment per pet — as an input for achievement quests (013), not as a visible counter.
 - Day counter resets at midnight (device timezone)
 - A day counts if ≥1 Moment saved for that pet on that calendar day
-- Streak visible on pet profile: "🔥 14 дней подряд"
+- NOT displayed on the pet profile or anywhere as a standalone counter — consistency surfaces only as quest progress on the Achievements screen (013)
 - Achievement system checks against streak milestones (see feature 013)
 
 ---
@@ -103,9 +103,9 @@ The system tracks consecutive days with at least one Moment per pet.
 - [ ] Toast "Moment saved 🐾" shown
 - [ ] Achievement check fires after save (see feature 013)
 
-### Streak
-- [ ] Current streak count visible on pet profile under hero section
-- [ ] Streak shows "🔥 N дней подряд"
+### Streak (internal)
+- [ ] No streak counter rendered anywhere in the UI
+- [ ] Streak computed per pet: consecutive calendar days with ≥1 moment
 - [ ] Streak resets if no moment saved on a calendar day
 
 ### Empty / Error

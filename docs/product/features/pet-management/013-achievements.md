@@ -127,9 +127,7 @@ On the user profile screen:
 
 ## Pet profile integration
 
-On the pet's profile hero section:
-- Current streak: "🔥 14 дней подряд" — shown below the age/together stats
-- Streak disappears if 0 days (only shows when ≥1)
+None. Consistency is a quest condition, not a counter: streak progress lives on the Achievements screen as an in-progress item with a progress bar ("Месяц без пропуска: 18/30"), WoW-style. No permanent streak counter anywhere on the pet profile — a naked day counter is a guilt mechanic and off-brand.
 
 ---
 
@@ -160,10 +158,10 @@ On the pet's profile hero section:
 - [ ] Equip updates profile immediately
 
 ### Streak (via Moments feature)
-- [ ] Streak counter shown on pet profile
-- [ ] Streak increments on first moment of each calendar day
+- [ ] No streak counter on the pet profile
+- [ ] Streak increments on first moment of each calendar day (internal)
 - [ ] Streak resets if day missed
-- [ ] Streak milestones trigger achievements
+- [ ] Streak milestones trigger achievements; progress visible on Achievements screen
 
 ---
 
