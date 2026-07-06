@@ -2,141 +2,110 @@
 Status: Ready
 
 ## Goal
-Transform the pet profile from a data form into a living, emotional profile that shows the pet's story at a glance.
+Transform the pet profile from a data form into a living, emotional profile: the pet's life timeline front and center, reference info one tab away.
 
 ## User Stories
-- As a pet owner, I want to see my pet's key info at a glance so that I don't have to tap through tabs to find what I need.
-- As a pet owner, I want to see my pet's recent photos on their profile so that the profile feels alive, not like a form.
-- As a new user with no data yet, I want to see clear placeholder states so that I know how to fill in the profile.
+- As a pet owner, I want to open my pet's profile and immediately see their life story and what's coming up so that the profile feels alive, not like a form.
+- As a pet owner, I want reference info (breed, weight, documents) available but out of the way so that it doesn't clutter the story.
+- As a new user with no data yet, I want clear placeholder states so that I know how to start filling the profile.
 
 ## Structure
-Single scrollable page. No tabs. Each section has a "see all" link that opens a dedicated full-screen view.
+Collapsing hero on top, then two tabs: **Timeline** (default) and **Info**. No section blocks — the timeline IS the profile.
 
 ```
 ┌─────────────────────────────┐
-│   [hero photo - full width] │
-│   Name · Species            │  <- overlay on photo
-│   Age · Together X years    │
+│   [hero photo - 300dp]      │  <- collapses into a compact
+│   Name · Species            │     bar on scroll
+│   Age · Together · Birthday │
+│   🔥 14 days in a row       │
 ├─────────────────────────────┤
-│  Health snapshot (3 cards)  │
+│   Timeline    |    Info     │  <- tabs, Timeline default
 ├─────────────────────────────┤
-│  Photos  ──────────── all → │
-│  [ ] [ ] [ ] [ ] [ ] [ ]    │
-├─────────────────────────────┤
-│  Timeline ─────────── all → │
-│  · March — vet visit         │
-│  · January — birthday        │
-├─────────────────────────────┤
-│  Breed · Gender · Weight     │  <- info, below fold
-│  Additional info             │
+│                             │
+│   (tab content)             │
+│                             │
 └─────────────────────────────┘
 ```
 
 ---
 
-## Section: Hero header
+## Hero header (above tabs)
 
-- Full-width photo of the pet (or large paw icon placeholder if no photo)
-- Gradient overlay at the bottom of the photo
-- On top of gradient: pet name (large), species (small, muted)
-- Below photo: two stats inline
-  - Age: "4 years 2 months"
-  - Time together: "With you for 3 years 8 months" (calculated from pet created_at)
-- Pencil icon (edit mode) in top-right corner of the header
-- Back arrow top-left
+- Full-width photo, 300dp expanded (or large paw icon placeholder if no photo)
+- Gradient overlay at the bottom; on top of it: pet name (large), species (small, muted)
+- Below photo: age ("4 years 2 months"), time together ("With you for 3 years 8 months", from pet created_at), next birthday if DOB set ("Birthday in X days", shown when ≤60 days)
+- Streak from Moments: "🔥 N days in a row" — hidden when 0
+- **Collapsing behavior**: on scroll, hero collapses into a compact app bar — pet name + back arrow + pencil remain visible; expands back when scrolling to top
+- Back arrow top-left; pencil top-right → edit mode (feature 010): switches to the Info tab with fields editable, hero stays visible
 
 ---
 
-## Section: Health snapshot
+## Tab: Timeline (default)
 
-Three compact cards in a horizontal row:
-
-| Card | Content | Color logic |
-|---|---|---|
-| Next event | Title + days remaining | Green if >30d, Yellow if 7-30d, Red if <7d or overdue |
-| Last vet visit | X months ago | Green if <6mo, Yellow if 6-12mo, Red if >12mo |
-| Weight trend | +/- X kg vs previous | Neutral; no color logic |
-
-If no events exist yet: cards show placeholder state "No events yet" with a subtle "Add" link.
-Dev: Health snapshot depends on Event Calendar (003). For now show placeholder cards with static text.
+The pet's life as one continuous vertical road — history below, plans above, anchored on today. Full spec: feature 009. This tab has no blocks or sections of its own — it renders the 009 road and nothing else.
 
 ---
 
-## Section: Photos
+## Tab: Info
 
-- Title "Photos" with "See all →" link on the right
-- Grid of 6 most recent photos (2 rows of 3)
-- Tapping "See all →" opens the full Gallery screen (feature 004)
+Top to bottom:
+
+**Photos** (first section)
+- Title "Photos" with "See all →" link opening the full Gallery screen (feature 004)
+- Grid of 6 most recent photos (2 rows of 3), moments' photos included
 - Tapping a photo opens it full-screen
 - Empty state: single placeholder cell with "+" icon; tapping opens camera/gallery picker
 
----
+**Details**
+- Fields shown only if filled: Breed, Gender, Date of birth, Weight, Additional info
+- Empty fields hidden
+- No inline edit controls; editing via pencil in hero (feature 010)
 
-## Section: Timeline
-
-- Title "Timeline" with "See all →" link on the right
-- Shows a mix: 1 nearest upcoming event + 2 most recent past entries (moments/milestones)
-- If no upcoming events: 3 most recent past entries
-- Each entry: icon + title + date; upcoming entry shows countdown ("in 3 days") and outline style
-- Tapping "See all →" opens the full Timeline screen (feature 009)
-- Dev: until 009 Phase 1 is built, show placeholder: "No history yet. Start by adding a moment."
-
----
-
-## Section: Info
-
-- Displayed below the fold (user scrolls to see it)
-- Fields shown only if filled in: Breed, Gender, Date of birth, Weight, Additional info
-- Empty fields hidden (same rule as current spec)
-- No edit controls here; editing done via pencil icon in header
+**Lifecycle actions** (bottom of scroll)
+- "Passed away" and "Remove pet" buttons per feature 008
 
 ---
 
 ## Acceptance Criteria
 
 ### Hero
-- [ ] Full-width hero photo with gradient overlay
-- [ ] Pet name and species displayed on photo
-- [ ] Age shown as "X years Y months" or "X months" for young animals
-- [ ] Time together shown as "With you for X years Y months"
-- [ ] Next birthday shown if date of birth is set: "Birthday in X days" (hidden if DOB not set)
-- [ ] Pencil icon in top-right opens edit mode (feature 010)
+- [ ] Full-width hero photo with gradient overlay, name and species on photo
+- [ ] Age as "X years Y months" ("X months" for young animals)
+- [ ] Time together as "With you for X years Y months"
+- [ ] Next birthday shown when DOB set and ≤60 days away
+- [ ] Streak "🔥 N days in a row" shown when ≥1, hidden at 0
+- [ ] Hero collapses to compact bar on scroll; name, back, pencil stay visible
+- [ ] Pencil opens edit mode on the Info tab (feature 010)
 
-### Health snapshot
-- [ ] Three cards visible: Next event, Last vet visit, Weight trend
-- [ ] Color coding applied per rules above
-- [ ] Placeholder state shown if no data exists
+### Tabs
+- [ ] Two tabs: Timeline and Info; Timeline is the default on open
+- [ ] Switching tabs preserves scroll position of each tab while on the screen
 
-### Photos
-- [ ] 6 most recent photos shown in a 2x3 grid
-- [ ] "See all" navigates to full Gallery screen
-- [ ] Empty state shows "+" cell
+### Timeline tab
+- [ ] Renders the continuous road per feature 009 (AC live there)
 
-### Timeline
-- [ ] Strip shows 1 nearest upcoming + 2 most recent past entries (3 past if nothing upcoming)
-- [ ] "See all" navigates to full Timeline screen
-- [ ] Placeholder shown if no entries exist
-
-### Info
-- [ ] Info section visible below fold
-- [ ] Only filled fields are shown
+### Info tab
+- [ ] Photos grid: 6 most recent (moments included), "See all" → Gallery, empty state with "+"
+- [ ] Only filled detail fields shown
+- [ ] Lifecycle buttons at the bottom of the scroll
 
 ---
 
 ## Navigation
-- PetListScreen tap → PetProfileScreen (this redesigned screen)
-- PetProfileScreen pencil → edit mode (feature 010)
-- PetProfileScreen Photos "See all" → GalleryScreen (feature 004)
-- PetProfileScreen Timeline "See all" → TimelineScreen (feature 009)
+- PetListScreen tap → PetProfileScreen (Timeline tab)
+- Pencil → edit mode on Info tab (feature 010)
+- Info tab Photos "See all" → GalleryScreen (feature 004)
+- Timeline node taps → per feature 009
 - PetProfileScreen back → PetListScreen
 
 ## Impact on existing specs
-- Replaces the three-tab structure (General Info / Gallery / Timeline) defined in 001-pet-profile.md
-- Gallery and Timeline become full-screen views accessed from this profile, not tabs
-- Feature 004 (Photo Gallery) and 009 (Pet Timeline) specs remain valid as full-screen views
+- Replaces the single-scroll section layout from the previous version of this spec: health snapshot cards are removed (upcoming events and vet history are visible on the timeline road; weight trend moves to Growth Tracking 005); the photos strip moves into the Info tab; the timeline strip is gone — the timeline is now a full tab
+- Feature 009 timeline renders as a tab here, not a separate screen
+- Feature 010 edit mode applies to the Info tab fields
+- Feature 008 lifecycle buttons live at the bottom of the Info tab
 
 ## Out of Scope
-- Breed-specific health insights (future -- requires breed intelligence layer)
+- Breed-specific health insights (future — requires breed intelligence layer)
 - Personality tags (future iteration)
 - Health score / overall rating
 - Sharing the profile externally (part of social feature in ideas.md)

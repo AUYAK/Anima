@@ -2,7 +2,7 @@
 Status: Ready
 
 ## Goal
-Allow users to update any field on a pet's profile directly from the General Info tab without navigating to a separate screen.
+Allow users to update any field on a pet's profile directly from the Info tab without navigating to a separate screen.
 
 ## User Stories
 - As a user, I want a clear way to enter edit mode so I know my changes are intentional.
@@ -10,8 +10,8 @@ Allow users to update any field on a pet's profile directly from the General Inf
 - As a user, I want to cancel editing without saving if I changed my mind.
 
 ## Inline editing pattern
-A pencil icon sits in the top-right corner of the PetProfileScreen header.
-Tapping it switches the profile into edit mode -- all fields become editable simultaneously.
+A pencil icon sits in the top-right corner of the PetProfileScreen hero.
+Tapping it switches the profile to the Info tab in edit mode -- all detail fields become editable simultaneously; the hero stays visible.
 The pencil icon is replaced by Save and Cancel in the header.
 
 Tapping Save commits all changes and returns to view mode.
@@ -19,7 +19,7 @@ Tapping Cancel discards all changes and returns to view mode.
 If the user taps back while in edit mode, a dialog appears: "You have unsaved changes. Save or discard?" with Save and Discard buttons.
 
 ## Editable fields
-All fields on General Info tab are editable except Age (calculated, never entered manually):
+All fields on the Info tab are editable except Age (calculated, never entered manually):
 
 | Field | Edit control |
 |---|---|
@@ -34,7 +34,7 @@ All fields on General Info tab are editable except Age (calculated, never entere
 
 ## Acceptance Criteria
 - [ ] A pencil icon is visible in the top-right corner of PetProfileScreen header
-- [ ] Tapping the pencil icon switches the profile to edit mode; all fields become editable simultaneously
+- [ ] Tapping the pencil icon switches the profile to the Info tab in edit mode; all fields become editable simultaneously
 - [ ] In edit mode, the pencil icon is replaced by Save and Cancel in the header
 - [ ] Tapping Save commits all changes; success toast appears: "Changes saved"; screen returns to view mode
 - [ ] Tapping Cancel discards all changes; screen returns to view mode with original values
@@ -50,6 +50,6 @@ All fields on General Info tab are editable except Age (calculated, never entere
 No new screens. All editing happens inline on PetProfileScreen.
 
 ## Out of Scope
-- Editing the pet's name directly from the profile header (done via edit mode on General Info tab)
+- Editing the pet's name directly from the profile header (done via edit mode on the Info tab)
 - Per-field save (all changes saved together with one Save button)
 - Weight history chart and manual measurement log (covered in Growth Tracking feature 005)

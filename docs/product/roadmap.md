@@ -30,8 +30,8 @@
 | 006 | Training Courses | Learning | Planned | Guided care and training lessons |
 | 007 | Localization | Platform | Ready | Russian + English based on device language |
 | 008 | Pet Lifecycle | Pet Management | Draft | Passed away + remove flows; inactive tab in Phase 2 |
-| 009 | Pet Timeline | Pet Management | Ready | Unified life feed: past (moments, milestones) + future (planned events); "Today" anchor |
+| 009 | Pet Timeline | Pet Management | Ready | Continuous vertical life road on profile Timeline tab; placeholder → planned → completed |
 | 010 | Edit Pet | Pet Management | Ready | Inline editing with pencil icon per field |
-| 011 | Pet Profile Redesign | Pet Management | Ready | Rich scrollable profile: hero, health snapshot, photo strip, timeline strip |
+| 011 | Pet Profile Redesign | Pet Management | Ready | Collapsing hero + two tabs: Timeline (default) and Info |
 | 012 | Moments | Pet Management | Ready | Daily photo + tag log; center tab entry; feeds timeline, gallery, streaks |
 | 013 | Achievements & Titles | Pet Management | Ready | WoW-style points + titles; 5 categories; streak/health/memory/learning/together |
