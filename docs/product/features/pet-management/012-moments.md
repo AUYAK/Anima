@@ -24,16 +24,18 @@ A Moment is NOT an event (no reminder, no date scheduling). It's a record of som
 
 ## Activity tags
 
-| Tag | Icon | Examples |
-|---|---|---|
-| Прогулка | 🐾 | Morning walk, park visit |
-| Игра | 🎾 | Fetch, tug of war, indoor play |
-| Еда | 🍖 | Meal, treat, new food |
-| Сон | 💤 | Nap, sleeping spot |
-| Уход | ✂️ | Grooming, bath, nail trim |
-| Ветеринар | 🏥 | Clinic visit, checkup |
-| Тренировка | 🎓 | Training session, learned a trick |
-| Просто так | 📸 | Any other cute moment |
+| Key | Label (EN) | Label (RU) | Icon | Examples |
+|---|---|---|---|---|
+| walk | Walk | Прогулка | 🐾 | Morning walk, park visit |
+| play | Play | Игра | 🎾 | Fetch, tug of war, indoor play |
+| food | Food | Еда | 🍖 | Meal, treat, new food |
+| sleep | Sleep | Сон | 💤 | Nap, sleeping spot |
+| care | Care | Уход | ✂️ | Grooming, bath, nail trim |
+| vet | Vet | Ветеринар | 🏥 | Clinic visit, checkup |
+| training | Training | Тренировка | 🎓 | Training session, learned a trick |
+| other | Just because | Просто так | 📸 | Any other cute moment |
+
+UI shows English labels (per 007 conventions); RU labels reserved for future localization. `key` is the stored value. No tag is pre-selected — the user must actively choose one.
 
 ---
 
@@ -42,23 +44,23 @@ A Moment is NOT an event (no reminder, no date scheduling). It's a record of som
 Entry point: center tab bar button (＋) — accessible from any screen.
 
 **Step 1 — Camera / Gallery picker**
-Opens immediately on tap. Full-screen camera view with:
-- Shutter button (take photo)
-- Gallery button (choose from device)
-- Recent pet photos strip at bottom (quick reuse)
-- × to cancel
+Tapping ＋ opens the system camera immediately (no intermediate screen).
+- Behind it: a minimal fallback screen with "Choose from gallery" and × to cancel
+- Cancelling the camera lands the user on the fallback screen
+- Custom in-app camera and recent-photos strip: out of scope for v1
 
 **Step 2 — Compose screen**
 After photo is selected:
-- Photo preview (full width, square crop with drag-to-reposition)
-- Caption field: "Что происходит?" — placeholder, optional, multiline
-- Activity tag row: horizontal scroll of tag chips, one required
-- Pet selector: shows all pets as small avatars, tap to assign — defaults to most recently active
-- Timestamp: shows "Сейчас", tap to adjust (date picker)
-- Publish button: "Сохранить момент"
+- Photo preview (full width, as taken — grids crop to square at display time)
+- Caption field: "What's happening?" — placeholder, optional, multiline
+- Activity tag row: horizontal scroll of tag chips, one required, none pre-selected
+- Pet selector: shows all pets as small avatars, tap to assign — defaults to the pet currently selected in the home topbar
+- Timestamp: shows "Now", tap to adjust (date picker, no future dates)
+- Publish button: "Save moment"
+- × top-left: if anything is filled in, "Discard moment?" dialog (Discard / Keep editing)
 
 **Step 3 — Success**
-- Toast: "Момент сохранён 🐾"
+- Toast: "Moment saved 🐾"
 - If this moment triggers a streak milestone: full-screen achievement celebration appears (see feature 013)
 - Returns to screen the user came from
 
@@ -88,16 +90,17 @@ The system tracks consecutive days with at least one Moment per pet.
 
 ### Compose
 - [ ] Photo required — cannot save without photo
-- [ ] Activity tag required — cannot save without selecting one
-- [ ] Caption optional
-- [ ] Pet selector defaults to most recently active pet
-- [ ] Timestamp defaults to current time, editable via date picker
-- [ ] "Сохранить момент" commits the moment
+- [ ] Activity tag required — no tag pre-selected; save blocked until one is chosen
+- [ ] Caption optional, placeholder "What's happening?"
+- [ ] Pet selector defaults to the pet currently selected in the home topbar
+- [ ] Timestamp defaults to current time, editable via date picker (no future dates)
+- [ ] "Save moment" commits the moment
+- [ ] All UI strings in English (per 007 conventions)
 
 ### Post-save
 - [ ] Moment appears in pet's Photos section immediately
 - [ ] Moment appears in pet's Timeline section
-- [ ] Toast "Момент сохранён" shown
+- [ ] Toast "Moment saved 🐾" shown
 - [ ] Achievement check fires after save (see feature 013)
 
 ### Streak
@@ -106,9 +109,10 @@ The system tracks consecutive days with at least one Moment per pet.
 - [ ] Streak resets if no moment saved on a calendar day
 
 ### Empty / Error
-- [ ] Photo upload failure: toast "Не удалось загрузить фото. Попробуй ещё раз."
+- [ ] Photo upload failure: toast "Couldn't upload the photo. Try again."
 - [ ] Save failure: screen stays on compose, error toast shown
-- [ ] If user taps × on compose with filled content: "Отменить момент?" dialog with Да / Продолжить
+- [ ] If user taps × on compose with filled content: "Discard moment?" dialog with Discard / Keep editing
+- [ ] User has no pets: tapping ＋ shows "Add a pet first" and opens the Add Pet screen
 
 ---
 
@@ -119,6 +123,8 @@ The system tracks consecutive days with at least one Moment per pet.
 - Compose × → dialog → back to previous screen
 
 ## Out of Scope
+- Custom in-app camera UI + recent-photos strip (v1 uses system camera)
+- Square crop / drag-to-reposition (grids crop at display time)
 - Video support
 - Multiple photos per moment
 - Editing a moment after save (future)
