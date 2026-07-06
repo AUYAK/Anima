@@ -4,6 +4,11 @@ Status: Ready
 ## Goal
 Give users a fast way to log daily life with their pet — a photo, optional text, and an activity tag. Moments feed the pet's timeline, the gallery, and the achievement streak system.
 
+## User Stories
+- As a pet owner, I want to quickly capture a photo and tag it so that I can log a moment without interrupting my time with my pet.
+- As a pet owner, I want to see my daily streak so that I feel motivated to log something every day.
+- As a pet owner with multiple pets, I want to assign a moment to the right pet so that each pet's history stays separate.
+
 ## What is a Moment
 A Moment is the atomic unit of pet content in Anima:
 - Photo (required)

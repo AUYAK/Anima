@@ -4,6 +4,11 @@ Status: Ready
 ## Goal
 Transform the pet profile from a data form into a living, emotional profile that shows the pet's story at a glance.
 
+## User Stories
+- As a pet owner, I want to see my pet's key info at a glance so that I don't have to tap through tabs to find what I need.
+- As a pet owner, I want to see my pet's recent photos on their profile so that the profile feels alive, not like a form.
+- As a new user with no data yet, I want to see clear placeholder states so that I know how to fill in the profile.
+
 ## Structure
 Single scrollable page. No tabs. Each section has a "see all" link that opens a dedicated full-screen view.
 
@@ -70,10 +75,11 @@ Dev: Health snapshot depends on Event Calendar (003). For now show placeholder c
 ## Section: Timeline
 
 - Title "Timeline" with "See all →" link on the right
-- Last 3 events from the pet's timeline, most recent first
-- Each entry: icon + event title + date
+- Shows a mix: 1 nearest upcoming event + 2 most recent past entries (moments/milestones)
+- If no upcoming events: 3 most recent past entries
+- Each entry: icon + title + date; upcoming entry shows countdown ("in 3 days") and outline style
 - Tapping "See all →" opens the full Timeline screen (feature 009)
-- Dev: Timeline section depends on Pet Timeline (009). For now show placeholder: "No history yet. Start by adding an event."
+- Dev: until 009 Phase 1 is built, show placeholder: "No history yet. Start by adding a moment."
 
 ---
 
@@ -107,9 +113,9 @@ Dev: Health snapshot depends on Event Calendar (003). For now show placeholder c
 - [ ] Empty state shows "+" cell
 
 ### Timeline
-- [ ] Last 3 events shown
+- [ ] Strip shows 1 nearest upcoming + 2 most recent past entries (3 past if nothing upcoming)
 - [ ] "See all" navigates to full Timeline screen
-- [ ] Placeholder shown if no events exist
+- [ ] Placeholder shown if no entries exist
 
 ### Info
 - [ ] Info section visible below fold
