@@ -37,13 +37,13 @@ The pet's life as one continuous vertical road — history below, plans above, a
 ◌ placeholder            ○ planned              ✓ completed
 "Time to plan            "Vet visit             "Vet visit · done,
  a vet visit"      →      Jul 15, 14:00"   →     report attached"
- (care rule fires)        (user set details)     (user marked done,
+ (template suggested)     (user set details)     (user marked done,
                                                   moves into history)
 ```
 
 A node never disappears — it changes state and travels down the road into history.
 
-**Placeholders** come from recurring care rules (defined with feature 003), e.g. "vet visit yearly": if no vet activity in the last 12 months and none planned → a placeholder node appears in the future part. If nothing is due and nothing is planned, the future part is simply empty — the road starts at today.
+**Placeholders** are template suggestions (defined in 003): when the pet has zero planned activities, up to 3 suggested templates appear as dashed nodes prompting "add activities you want to track". Smart care rules ("no vet visit in the last 12 months → suggest one") are a future upgrade of suggestions. If nothing is planned and suggestions are gone, the future part is simply empty — the road starts at today.
 
 ---
 
@@ -100,7 +100,7 @@ A node never disappears — it changes state and travels down the road into hist
 - [ ] No milestones dated before the pet joined the app
 
 ### Activities (Phase 2, with 003)
-- [ ] Placeholder node appears when a care rule is due and nothing is planned
+- [ ] Suggestion nodes appear when the pet has zero planned activities (per 003)
 - [ ] Placeholder tap → planning flow; planned node shows date/time
 - [ ] Completing an activity moves its node below today with report attached
 - [ ] Planned/completed/placeholder nodes tappable → details
@@ -126,7 +126,7 @@ A node never disappears — it changes state and travels down the road into hist
 
 **Phase 1 (now, after 012):** the road inside the Timeline tab — moments + auto-milestones + today marker. No future part yet (003 doesn't exist): road starts at today.
 
-**Phase 2 (with 003):** future part — placeholders from care rules, planned activities, activity lifecycle (placeholder → planned → completed with report). The 003 spec must define: activity states, care rules, planning flow, completion flow with attachments.
+**Phase 2 (with 003):** future part — template suggestions, planned activities, activity lifecycle (placeholder → planned → completed with report). The 003 spec defines the activity model, templates, planning and completion flows.
 
 **Phase 3 (with 013):** "Title unlocked" milestone nodes.
 
@@ -134,7 +134,7 @@ A node never disappears — it changes state and travels down the road into hist
 
 ## Impact on existing specs
 - Feature 011: timeline is the default profile tab; the previous "timeline strip" section is gone
-- Feature 003 (when specced): must define recurring care rules and the placeholder → planned → completed lifecycle used here
+- Feature 003: defines the activity model, templates, and the placeholder → planned → completed lifecycle used here
 - Replaces the "biography tab" concept from 001-pet-profile.md
 
 ## Dependencies
