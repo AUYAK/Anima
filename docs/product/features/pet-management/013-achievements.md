@@ -12,6 +12,9 @@ Every achievement has a point value. Points accumulate into a global score shown
 **Достижения (Achievements)**
 Discrete milestones across 5 categories. Each has: name, description, icon, point value, unlock condition, progress tracking where applicable.
 
+**Линейки (Chains)**
+Achievements that measure the same metric form a chain and unlock strictly in sequence (7 → 30 → 100 → 365 days). A chain renders as ONE row on the Achievements screen: earned tiers checked with dates, current tier with progress, future tiers grayed. Tiers have no individual names — the chain has a name, a tier is labeled by its value. Most achievements live in chains; conditions that don't scale stay as singles.
+
 **Звания (Titles)**
 Special achievements that grant a displayable title. User can earn many titles but shows only one at a time — chosen from their collection. Title appears under the user's name on their profile.
 
@@ -19,46 +22,61 @@ Special achievements that grant a displayable title. User can earn many titles b
 
 ## Achievement categories
 
-### 🐾 Вместе (Together) — time-based milestones
-| Achievement | Condition | Points |
+### 🐾 Вместе (Together)
+**Chain — время с питомцем** (from pet created_at):
+| Tier | Points | Title |
 |---|---|---|
-| Первый день | Завёл питомца | 10 |
-| Месяц вместе | 30 дней с питомцем | 25 |
-| Полгода вместе | 180 дней | 50 |
-| Год вместе | 365 дней | 100 |
-| Три года вместе | 1095 дней | 200 |
-| Пять лет вместе | 1825 дней | 500 |
+| 1 день | 10 | — |
+| 30 дней | 25 | — |
+| 180 дней | 50 | — |
+| 1 год | 100 | — |
+| 3 года | 200 | — |
+| 5 лет | 500 | «Ветеран» |
 
-### 📸 Летописец (Memory) — moments and photos
-| Achievement | Condition | Points |
+### 📸 Летописец (Memory)
+**Chain — моментов сохранено:**
+| Tier | Points | Title |
 |---|---|---|
-| Первый момент | Сохранил первый момент | 10 |
-| Фотограф | 10 моментов | 20 |
-| Хроникёр | 50 моментов | 50 |
-| Архивариус | 200 моментов | 100 |
+| 1 | 10 | — |
+| 10 | 20 | — |
+| 50 | 50 | — |
+| 200 | 100 | «Летописец» |
 
-### 🔥 Постоянство (Streaks) — consecutive day logging
-| Achievement | Condition | Points | Title unlocked |
-|---|---|---|---|
-| Первая неделя | 7 дней подряд | 25 | — |
-| Месяц без пропуска | 30 дней подряд | 75 | «Постоянный» |
-| Сто дней | 100 дней подряд | 150 | «Верный хозяин» |
-| Год подряд | 365 дней подряд | 500 | «Легенда» |
+### 🔥 Постоянство (Streaks)
+**Chain — дней подряд** (≥1 moment per calendar day):
+| Tier | Points | Title |
+|---|---|---|
+| 7 | 25 | — |
+| 30 | 75 | «Постоянный» |
+| 100 | 150 | «Верный хозяин» |
+| 365 | 500 | «Легенда» |
 
-### 💉 Забота (Health) — health and care events
-| Achievement | Condition | Points | Title unlocked |
+**Single:**
+| Achievement | Condition | Points | Title |
 |---|---|---|---|
-| Первый визит | Записал первый визит к ветеринару | 15 | — |
-| Здоровый питомец | 3 записанных вет-визита | 30 | — |
+| Инфлюенсер | 30 дней подряд с тегом «Прогулка» | 75 | «Инфлюенсер» |
+
+### 💉 Забота (Health)
+**Chain — записанных вет-визитов:**
+| Tier | Points | Title |
+|---|---|---|
+| 1 | 15 | — |
+| 3 | 30 | — |
+| 10 | 75 | — |
+
+**Singles:**
+| Achievement | Condition | Points | Title |
+|---|---|---|---|
 | Образцовый хозяин | Полная история прививок (3+) | 75 | «Образцовый хозяин» |
 | На контроле | Визит к вету каждые 12 месяцев (2 года подряд) | 100 | — |
 
-### 🎓 Знания (Learning) — courses
-| Achievement | Condition | Points |
+### 🎓 Знания (Learning)
+**Chain — курсов завершено:**
+| Tier | Points | Title |
 |---|---|---|
-| Первый урок | Завершил первый курс | 20 |
-| Студент | Завершил 3 курса | 50 |
-| Эксперт | Завершил 10 курсов | 150 |
+| 1 | 20 | — |
+| 3 | 50 | — |
+| 10 | 150 | «Мастер ухода» |
 
 ---
 
@@ -84,7 +102,9 @@ Default title: none (field empty until first title unlocked).
 
 ## Achievement unlock flow
 
-When an achievement is unlocked — immediately after the triggering action:
+When an achievement is unlocked — immediately after the triggering action.
+
+**Multi-tier rule:** if several tiers of one chain unlock at once (e.g. "Вместе" computed on app update), celebrate only the highest tier; lower tiers are granted silently with their dates.
 
 **Minor achievement (< 100 points)**
 Toast-style notification from top: icon + name + "+25 очков" — 3 seconds, tappable to open full achievement screen.
@@ -109,13 +129,15 @@ On the user profile screen:
 **Achievement progress card**: shows total unlocked / total available, progress bar, "Открыть →" to full screen
 
 **Achievements screen** (from Profile):
+- Summary: total points + unlocked count
+- **Chain rows** — one row per chain: icon + chain name + tier track on a single line
+  - Earned tiers: filled, checkmark
+  - Current tier: progress "45/100" in amber
+  - Future tiers: grayed
+  - Tap → bottom sheet: every tier with points, earned date ("30 дней — получено 3 июля"), attached title if any, and current progress toward the next tier
+- **Single achievements** — icon + name + description + points + status (unlocked with date / in progress with bar / locked gray)
+- Tiers and singles that grant a title show a crown icon; equipped title shows a badge
 - Filter chips: Все | Вместе | Летописец | Постоянство | Забота | Знания
-- Summary: total points + count
-- Each item: icon + name + description + points + status
-  - Unlocked: green checkmark + unlock date
-  - In progress: progress bar with "N / M" count in amber
-  - Locked: gray icon, gray text, lock icon right
-- Title achievements have crown icon and show equipped badge if active
 
 **Titles screen** (from Profile → "Моё звание"):
 - Grid of unlocked titles as cards
@@ -147,10 +169,11 @@ None. Consistency is a quest condition, not a counter: streak progress lives on 
 - [ ] Tap card opens full achievements screen
 
 ### Achievements screen
+- [ ] Chains render as one row: earned tiers checked, current tier shows progress "N/M", future tiers grayed
+- [ ] Chain tap opens detail sheet: per-tier points, earned dates, current progress
+- [ ] Tiers unlock strictly in sequence; several at once → only highest celebrated
+- [ ] Single achievements show status: unlocked with date / progress bar / locked gray
 - [ ] All 5 category filters work
-- [ ] Unlocked items show date
-- [ ] In-progress items show progress bar + count
-- [ ] Locked items shown grayed
 
 ### Titles screen
 - [ ] All unlocked titles shown as selectable cards
