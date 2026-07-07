@@ -26,6 +26,9 @@ The PM completes this checklist before handing off to dev.
 ### 5. Out of scope
 - [ ] What is explicitly NOT part of this feature
 
+### 6. Simplicity
+- [ ] Feature passes `docs/product/principles.md`: one job per screen, defaults over questions, content over chrome, depth opt-in, no new top-level surface
+
 ---
 
 ## Feature file template
