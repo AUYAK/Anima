@@ -27,9 +27,9 @@ The pet's life as one continuous vertical road — history below, plans above, a
 |---|---|---|---|
 | Placeholder | ◌ dashed outline | Future | Opens planning flow (003) |
 | Planned activity | ○ outline, date/time | Future | Activity details / edit (003) |
-| Completed activity | ✓ filled, report attached | Past | Activity details with report (003) |
-| Moment | ● photo thumbnail | Past | Full-screen photo viewer |
-| Milestone | ★ accent icon | Past | Bottom sheet with details |
+| Completed activity | ✓ compact row inside its day group | Past | Activity details with report (003) |
+| Moment | photo tile inside its day group | Past | Full-screen photo viewer |
+| Milestone | ★ standalone accent node | Past | Bottom sheet with details |
 
 ### Activity lifecycle (the key loop)
 
@@ -57,23 +57,34 @@ A node never disappears — it changes state and travels down the road into hist
       ╎
    ── today ──                       <- opens here
       │
-      ●  [photo] Walk · "First snow" <- moment
+      ●  Today                       <- day group: date label
+      │   ┌───────────────────────┐
+      │   │   [PHOTO — large]     │  <- 1 moment that day = one large tile
+      │   └───────────────────────┘
       │
-      ✓  Vet visit · Jul 2           <- completed activity
+      ●  6 July                      <- day group
+      │   ┌──────┐ ┌──────┐ ┌──────┐
+      │   │ 📷 🌙│ │ 📷 🐾│ │ 📷  │  <- 3+ moments = 3-column tile grid
+      │   └──────┘ └──────┘ └──────┘
+      │   ✓ Vet visit · 08:36        <- day's activities as compact rows
       │        June 2026             <- month label along the road
-      ★  1 year together             <- milestone (accent)
-      │
-      ●  ...
+      ★  1 year together             <- milestone (standalone accent node)
       │
       🏠 Joined Anima                <- start of the journey, end of road
 ```
 
+**The day is the unit of the past.** Each calendar day with content is one node on the road, labeled "Today", "Yesterday", then "6 July". Inside a day group:
+- The day's moments as photo tiles: 1 moment → one large tile (full content width); 2 → two half-width tiles; 3+ → 3-column grid, wrapping
+- Tag shown as a small icon overlay on the tile corner; caption and exact time live in the full-screen viewer
+- The day's completed activities as compact rows under the tiles
+
+Other rules:
 - Opens anchored on "today"; scroll down = history, scroll up = future
 - Future part: planned activities and placeholders, nearest to today closest to the marker; dashed road segment above today
-- Past part: reverse chronological; solid road segment
+- Past part: day groups reverse chronological; solid road segment
 - Month labels along the road (small, muted — not section headers)
+- Milestones are standalone accent nodes between day groups
 - "Joined Anima" milestone is always the oldest node
-- 2+ moments on the same day: stacked node with "+N" badge; tap expands into individual nodes inline
 
 ---
 
@@ -87,11 +98,13 @@ A node never disappears — it changes state and travels down the road into hist
 - [ ] "Joined Anima" is always the last (oldest) node
 - [ ] Month labels rendered along the road, not as separating blocks
 
-### Nodes
-- [ ] Moments render as photo nodes with tag + caption + time
-- [ ] Milestones render as accent nodes, visually distinct
-- [ ] 2+ moments on one day collapse into a stacked node "+N"; tap expands inline
-- [ ] Every node is tappable: moment → full-screen viewer, milestone → bottom sheet
+### Day groups & nodes
+- [ ] Past is grouped by calendar day: date label ("Today", "Yesterday", "6 July") + that day's content
+- [ ] 1 moment in a day → one large tile; 2 → two half-width tiles; 3+ → 3-column grid
+- [ ] Tag rendered as small icon overlay on the tile; caption and time visible in the viewer
+- [ ] Day's completed activities render as compact rows under the tiles
+- [ ] Milestones render as standalone accent nodes, visually distinct
+- [ ] Every tile and node is tappable: tile → full-screen viewer, milestone → bottom sheet
 - [ ] Gallery-only photos do NOT appear on the timeline
 
 ### Milestones
