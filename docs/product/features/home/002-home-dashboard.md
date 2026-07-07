@@ -1,51 +1,97 @@
-# Feature: Home Dashboard
+# Feature: Home Feed
 Status: Ready
 
 ## Goal
-Give the user a home screen with all their pets visible in the topbar, sorted by activity, so they can quickly jump to any pet.
+Home shows the life of all the user's pets as one card feed of moments, with the pets topbar for jumping to any pet's profile.
 
 ## User Stories
-- As a user, I want to see all my pets in the topbar after login so I can navigate to any of them quickly.
-- As a user, I want the most active pet shown first so I see what is most relevant.
-- As a new user with no pets, I want the home screen to prompt me to add my first pet.
+- As a user, I want to open the app and immediately see the latest moments of my pets so that Home feels alive, not like a menu.
+- As a user, I want to see all my pets in the topbar so that I can jump to any of them quickly.
+- As a new user with no content, I want Home to tell me what to do first.
 
-## Topbar design
-The topbar is a horizontally scrollable row of the user's own pet avatars. Purpose: navigate between pets and surface per-pet activity (notification badges in future).
+---
 
-- Each avatar is a circular photo (or paw icon placeholder if no photo set)
-- Pet name displayed below the avatar
-- Avatars are larger than a standard icon -- prominent enough to be a key navigation element
-- Row scrolls horizontally if the user has many pets
-- Sorted left to right by most recently updated (most recent on the left)
-- Dev: sort by `updated_at` desc; add `updated_at` column to pets table via migration if not present; will switch to notification-based sorting when push notifications are shipped (see todo.md)
+## Topbar (shipped in v1 — unchanged)
 
-The topbar row sits at the very top of the screen with no AppBar above it. HomeScreen has no AppBar for now -- actions (notifications, settings) will be added when future features require them.
+Horizontally scrollable row of the user's pet avatars.
+- Circular photo (or paw icon placeholder), pet name below
+- Sorted by most recently updated, most recent on the left
+- Tap avatar → that pet's profile
+- No pets: single placeholder avatar "Add your first pet" → Add Pet screen
+- Sits at the very top; HomeScreen has no AppBar
+
+## Feed (v2 — this spec)
+
+Below the topbar: a vertical feed of moment cards from **all** the user's pets, newest first (by taken_at).
+
+**Moment card:**
+```
+┌─────────────────────────────┐
+│ (🐕) Grom · 2h ago          │   <- pet avatar (small) + name + relative time
+│ ┌─────────────────────────┐ │
+│ │                         │ │
+│ │        [PHOTO]          │ │   <- rounded, full card width
+│ │                         │ │
+│ └─────────────────────────┘ │
+│ 🐾 Walk                     │   <- tag chip
+│ "First snow this year!"     │   <- caption, if any
+└─────────────────────────────┘
+```
+
+- Tap card → full-screen photo viewer (shared with gallery/road)
+- Pull-to-refresh
+- Lazy loading as the user scrolls
+- Relative time: "2h ago", "yesterday", then date
+
+The card format is deliberately universal: the same card will later carry friends' moments and discovery posts without redesign (see Future).
+
+---
 
 ## Acceptance Criteria
-- [ ] After login the user lands on the Home screen
-- [ ] The topbar shows all the user's pets as a horizontal scrollable row of avatars
-- [ ] Each avatar shows the pet's photo (or paw icon placeholder) with the pet's name below it
-- [ ] Pets are sorted left to right by most recently updated, most recent on the left
-- [ ] Tapping any pet avatar navigates to that pet's profile screen
-- [ ] If the user has no pets, the topbar shows a single placeholder avatar with the label "Add your first pet"
-- [ ] Tapping the placeholder navigates to the Add Pet screen
-- [ ] The rest of the home screen body is empty for now (future features will fill it)
+
+### Topbar (regression — must keep working)
+- [ ] All pets shown as avatar row, sorted by most recently updated
+- [ ] Avatar tap → pet profile; no-pets placeholder → Add Pet
+
+### Feed
+- [ ] Moments of all the user's pets shown as cards, newest first
+- [ ] Card shows pet avatar + name + relative time, photo, tag, caption (if any)
+- [ ] Card tap opens full-screen photo viewer
+- [ ] Pull-to-refresh reloads the feed
+- [ ] Feed paginates (no full-table load)
+- [ ] New moment saved via ＋ appears in the feed on return
+
+### Empty / Error
+- [ ] Has pets, no moments: illustration + "Save your first moment" hint pointing at the ＋ tab
+- [ ] No pets: topbar placeholder + body prompt to add a pet (existing behavior)
+- [ ] Load failure: "Couldn't load the feed" + Retry
+
+---
 
 ## Screens
-- HomeScreen: main screen after login; contains the topbar row and an otherwise empty body
+- HomeScreen — topbar + feed (no new screens; full-screen viewer is shared)
 
 ## Navigation
-- Successful login -> HomeScreen
-- HomeScreen pet avatar tap -> PetProfileScreen for that pet
-- HomeScreen placeholder tap (no pets) -> AddPetScreen
-- Bottom nav Home tab -> HomeScreen
+- Login → HomeScreen
+- Avatar tap → PetProfileScreen
+- Card tap → photo viewer → back
+- Bottom nav Home tab → HomeScreen
 
-## Empty / Error States
-- No pets: single placeholder avatar + "Add your first pet"; body is blank
-- Pet photo not set: circular paw icon placeholder
+## Simplicity check (principles.md)
+1. One job: Home shows what's happening; one primary action — scroll
+2. Nothing asked of the user at all
+3. Content over chrome: photos are the screen
+4. Depth opt-in: viewer and pet profiles behind one tap
+5. No new surfaces: fills the existing empty Home body
+
+## Future (recorded, not specced)
+- v2 social: friends' moments in the same feed, same card + owner name (requires accounts linking, privacy flag on moments, moderation)
+- v3 discovery: posts from strangers with the same breed between friend posts — solves social cold start; breed is a natural community axis
+- Notification badges on topbar avatars (needs push infrastructure)
 
 ## Out of Scope
-- Notification badge count on avatars (logged in todo.md -- needs notification infrastructure first)
-- Social sharing or viewing other users' pets (logged in ideas.md)
-- Upcoming events or reminders on the home screen (part of Event Calendar feature)
-- Onboarding flow for new users
+- Likes, comments, sharing
+- Friends / discovery content (see Future)
+- Filtering the feed by pet (tap the pet's avatar for their road instead)
+- "Due today" activities strip on Home (revisit with 003)
+- Onboarding flow
