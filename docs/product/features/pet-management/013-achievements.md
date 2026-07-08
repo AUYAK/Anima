@@ -13,7 +13,9 @@ Every achievement has a point value. Points accumulate into a global score shown
 Discrete milestones across 5 categories. Each has: name, description, icon, point value, unlock condition, progress tracking where applicable.
 
 **Линейки (Chains)**
-Achievements that measure the same metric form a chain and unlock strictly in sequence (7 → 30 → 100 → 365 days). A chain renders as ONE row on the Achievements screen: earned tiers checked with dates, current tier with progress, future tiers grayed. Tiers have no individual names — the chain has a name, a tier is labeled by its value. Most achievements live in chains; conditions that don't scale stay as singles.
+Achievements that measure the same metric form a chain and unlock strictly in sequence (7 → 30 → 100 → 365 days). A chain renders as ONE row on the Achievements screen: earned tiers checked with dates, current tier with progress, future tiers grayed. Tiers have no individual names, but each chain has ONE description line (shown once, in the chain's detail sheet) explaining what it tracks — a tier is labeled by its value + unit ("30 days", "50 moments"), never a bare "Tier: N". Most achievements live in chains; conditions that don't scale stay as singles.
+
+**Realism rule:** every tier must be reachable through active, ongoing use within a plausible timeframe — not pure calendar waiting. Milestones measuring elapsed time (not user effort) are capped at 1 year; anything beyond that is not a believable "achievement" for an app this young and reads as demotivating rather than aspirational. Effort-based chains (streaks, moments, visits, courses) can go further because they reward sustained active behavior, not passive time.
 
 **Звания (Titles)**
 Special achievements that grant a displayable title. User can earn many titles but shows only one at a time — chosen from their collection. Title appears under the user's name on their profile.
@@ -23,18 +25,22 @@ Special achievements that grant a displayable title. User can earn many titles b
 ## Achievement categories
 
 ### 🐾 Вместе (Together)
-**Chain — время с питомцем** (from pet created_at):
+**Chain — время с питомцем** (from pet created_at). Capped at 1 year per the realism rule above — elapsed-time tiers beyond that aren't a real achievement yet for an app this young; revisit once we have users who've stayed 2+ years.
+
+Description (shown once in the chain sheet): "Дней в Anima вместе с {pet_name}"
+
 | Tier | Points | Title |
 |---|---|---|
 | 1 день | 10 | — |
+| 7 дней | 15 | — |
 | 30 дней | 25 | — |
-| 180 дней | 50 | — |
-| 1 год | 100 | — |
-| 3 года | 200 | — |
-| 5 лет | 500 | «Ветеран» |
+| 90 дней | 40 | — |
+| 180 дней | 60 | — |
+| 365 дней | 100 | «Ветеран» |
 
 ### 📸 Летописец (Memory)
-**Chain — моментов сохранено:**
+**Chain — моментов сохранено.** Description: "Моментов сохранено с {pet_name}"
+
 | Tier | Points | Title |
 |---|---|---|
 | 1 | 10 | — |
@@ -43,7 +49,8 @@ Special achievements that grant a displayable title. User can earn many titles b
 | 200 | 100 | «Летописец» |
 
 ### 🔥 Постоянство (Streaks)
-**Chain — дней подряд** (≥1 moment per calendar day):
+**Chain — дней подряд** (≥1 moment per calendar day). Description: "Дней подряд с моментом для {pet_name}"
+
 | Tier | Points | Title |
 |---|---|---|
 | 7 | 25 | — |
@@ -57,7 +64,8 @@ Special achievements that grant a displayable title. User can earn many titles b
 | Инфлюенсер | 30 дней подряд с тегом «Прогулка» | 75 | «Инфлюенсер» |
 
 ### 💉 Забота (Health)
-**Chain — записанных вет-визитов:**
+**Chain — записанных вет-визитов.** Description: "Визитов к ветеринару записано"
+
 | Tier | Points | Title |
 |---|---|---|
 | 1 | 15 | — |
@@ -71,7 +79,8 @@ Special achievements that grant a displayable title. User can earn many titles b
 | На контроле | Визит к вету каждые 12 месяцев (2 года подряд) | 100 | — |
 
 ### 🎓 Знания (Learning)
-**Chain — курсов завершено:**
+**Chain — курсов завершено.** Description: "Курсов завершено"
+
 | Tier | Points | Title |
 |---|---|---|
 | 1 | 20 | — |
@@ -92,7 +101,7 @@ Titles appear under the username on the profile: "Алексей · *Инфлю�
 | Легенда | 365-дневный streak |
 | Образцовый хозяин | Полная история прививок |
 | Летописец | 200 моментов загружено |
-| Ветеран | 5 лет с питомцем |
+| Ветеран | 1 год с питомцем в Anima |
 | Мастер ухода | Завершил 10 курсов |
 | ⭐ Любимчик редакции | Мета-ачивка: закрыть все 5 категорий |
 
@@ -134,7 +143,7 @@ On the user profile screen:
   - Earned tiers: filled, checkmark
   - Current tier: progress "45/100" in amber
   - Future tiers: grayed
-  - Tap → bottom sheet: every tier with points, earned date ("30 дней — получено 3 июля"), attached title if any, and current progress toward the next tier
+  - Tap → bottom sheet: chain description at the top, then every tier labeled by value + unit ("30 days", not "Tier: 30") with points, earned date ("30 days — unlocked Jul 3"), attached title if any, and current progress toward the next tier
 - **Single achievements** — icon + name + description + points + status (unlocked with date / in progress with bar / locked gray)
 - Tiers and singles that grant a title show a crown icon; equipped title shows a badge
 - Filter chips: Все | Вместе | Летописец | Постоянство | Забота | Знания
@@ -170,10 +179,13 @@ None. Consistency is a quest condition, not a counter: streak progress lives on 
 
 ### Achievements screen
 - [ ] Chains render as one row: earned tiers checked, current tier shows progress "N/M", future tiers grayed
+- [ ] Chain detail sheet shows the chain's one-line description at the top
+- [ ] Every tier is labeled by value + unit (e.g. "30 days", "50 moments") — never a bare "Tier: N"
 - [ ] Chain tap opens detail sheet: per-tier points, earned dates, current progress
 - [ ] Tiers unlock strictly in sequence; several at once → only highest celebrated
 - [ ] Single achievements show status: unlocked with date / progress bar / locked gray
 - [ ] All 5 category filters work
+- [ ] No chain has an elapsed-time tier beyond 1 year
 
 ### Titles screen
 - [ ] All unlocked titles shown as selectable cards
