@@ -20,6 +20,8 @@ Achievements that measure the same metric form a chain and unlock strictly in se
 **Звания (Titles)**
 Special achievements that grant a displayable title. User can earn many titles but shows only one at a time — chosen from their collection. Title appears under the user's name on their profile.
 
+**Scope: per-user, not per-pet.** Achievements, points, and titles belong to the user, not to an individual pet — consistent with points/title living on the user profile (see Profile integration below). For metrics based on pet data (time together, moments, streaks), the tracked value is the **max across all the user's pets** for that metric — e.g. "days together" progresses using whichever pet has been in Anima longest. Chain descriptions must stay pet-agnostic ("Дней в Anima", not "...с {pet}") since the leading pet can differ per metric and per user. A per-pet achievement breakdown is a possible future feature, not this one.
+
 ---
 
 ## Achievement categories
@@ -27,7 +29,7 @@ Special achievements that grant a displayable title. User can earn many titles b
 ### 🐾 Вместе (Together)
 **Chain — время с питомцем** (from pet created_at). Capped at 1 year per the realism rule above — elapsed-time tiers beyond that aren't a real achievement yet for an app this young; revisit once we have users who've stayed 2+ years.
 
-Description (shown once in the chain sheet): "Дней в Anima вместе с {pet_name}"
+Description (shown once in the chain sheet): "Дней в Anima"
 
 | Tier | Points | Title |
 |---|---|---|
@@ -39,7 +41,7 @@ Description (shown once in the chain sheet): "Дней в Anima вместе с 
 | 365 дней | 100 | «Ветеран» |
 
 ### 📸 Летописец (Memory)
-**Chain — моментов сохранено.** Description: "Моментов сохранено с {pet_name}"
+**Chain — моментов сохранено.** Description: "Моментов сохранено"
 
 | Tier | Points | Title |
 |---|---|---|
@@ -49,7 +51,7 @@ Description (shown once in the chain sheet): "Дней в Anima вместе с 
 | 200 | 100 | «Летописец» |
 
 ### 🔥 Постоянство (Streaks)
-**Chain — дней подряд** (≥1 moment per calendar day). Description: "Дней подряд с моментом для {pet_name}"
+**Chain — дней подряд** (≥1 moment per calendar day, max across pets). Description: "Дней подряд с моментом"
 
 | Tier | Points | Title |
 |---|---|---|
