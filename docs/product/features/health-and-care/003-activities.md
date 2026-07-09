@@ -97,21 +97,39 @@ Completing an activity fires the achievement check (013, Забота category).
 - [ ] Zero activities: suggestion nodes + hint copy in the future part
 - [ ] Save failure: toast "Couldn't save. Try again.", sheet stays open
 
+### SoonScreen
+- [ ] Lists upcoming activities across all pets, nearest first, each row shows which pet
+- [ ] Overdue rows styled amber, same as the road
+- [ ] Row tap opens the same details/complete sheet used on the road
+- [ ] Empty state: "Nothing planned yet" + "Plan something" → add sheet
+- [ ] No calendar grid or month view anywhere on this screen
+
 ---
 
 ## Screens
-- No new screens. Two bottom sheets (add, details/complete) over the Timeline tab (feature 011/009).
+- No new screens for planning/completing. Two bottom sheets (add, details/complete) over the Timeline tab (feature 011/009).
+- **SoonScreen** — repurposes the existing bottom-nav "Calendar" tab (tab stays, per the earlier navigation decision to keep the tab bar as-is; only its content changes since there is deliberately no calendar screen)
+
+## SoonScreen (the "Calendar" tab)
+
+A flat list of upcoming planned activities across **all** the user's pets, nearest first — the cross-pet view the per-pet road can't give.
+
+- Row: pet avatar (small) + activity icon + title + date/countdown; overdue rows styled amber, same as on the road
+- Tap a row → same details/complete bottom sheet as on the road
+- Grouped loosely by "Overdue" / "This week" / "Later" — no calendar grid, no month view
+- Empty (nothing planned for any pet): illustration + "Nothing planned yet" + "Plan something" button → opens the add sheet (asks which pet first if the user has more than one)
 
 ## Navigation
 - Road "＋ Plan" / suggestion node → add sheet → Save → back to road
-- Planned node tap → details sheet → Mark done / Edit / Delete → back to road
+- Planned node tap (road or SoonScreen) → details sheet → Mark done / Edit / Delete → back to where it opened from
+- Bottom nav "Calendar" tab → SoonScreen
 
 ## Simplicity check (principles.md)
 1. One job per sheet: add sheet plans, details sheet completes — one primary action each
 2. Defaults: template prefills everything except the date; date defaults to today
 3. Content over chrome: no calendar screen — the road is the schedule
 4. Depth opt-in: details, note, photo, time — all behind a tap
-5. No new surfaces: everything renders on the existing road
+5. No new surfaces: everything renders on the existing road; SoonScreen repurposes the existing "Calendar" tab rather than adding one
 
 ## Out of Scope
 - Push notifications / reminders (separate Platform spec; the road shows what's due)

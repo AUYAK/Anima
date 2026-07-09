@@ -24,7 +24,7 @@
 | - | Auth (email/password + Google) | Platform | Done | No feature doc; already shipped |
 | 001 | Pet Profile | Pet Management | Ready | Add and view pets |
 | 002 | Home Feed | Home | Ready | Topbar stories + card feed of own pets' moments; social/breed discovery recorded as Future |
-| 003 | Activities | Health & Care | Ready | One-time & repeating care activities as road nodes; templates; no calendar screen |
+| 003 | Activities | Health & Care | Ready | One-time & repeating care activities as road nodes; templates; "Calendar" tab repurposed as cross-pet SoonScreen list, no grid |
 | 004 | Photo Gallery | Gallery | Ready | Photos sub-tab + Documents sub-tab (docs deferred to Event Calendar) |
 | 005 | Growth Tracking | Health & Care | Planned | Weight and height over time |
 | 006 | Training Courses | Learning | Planned | Guided care and training lessons |
