@@ -14,7 +14,7 @@ Let users track one-time and repeating care activities (vet visits, treatments, 
 ## Core model
 
 **Activity = title + icon + schedule.**
-- Schedule is either **one-time** (a date) or **repeating** (Daily / Weekly / Monthly / Every 3 months / Yearly)
+- Schedule is either **one-time** (a date) or **repeating**: every N hours / days / weeks / months / years (N ≥ 1). Common presets (Daily, Weekly, Monthly, Every 3 months, Yearly) are just N=1 or N=3 shortcuts on the same model — no separate mechanism.
 - A repeating activity shows only its **next occurrence** on the road — never the whole future series
 - Completing an activity moves a ✓ node into history (optionally with note + photo as the report); a repeating activity then shows its next occurrence
 - A completed one-time activity is done — no new node
@@ -42,8 +42,8 @@ Custom activity: free-text title, generic 📌 icon. Templates are universal —
 
 **The sheet:**
 1. **What** — row of template chips + "Custom" (reveals a text field). Template tap prefills title, icon, recurrence.
-2. **Repeat** — chips: Once | Daily | Weekly | Monthly | Every 3 months | Yearly
-3. **When** — first/next date (date picker, defaults to today). Optional "Add time" link reveals a time picker; dates without time are the norm.
+2. **Repeat** — chips: Once | Daily | Weekly | Monthly | Every 3 months | Yearly | **Custom**. "Custom" reveals a number stepper + unit chips (Hour / Day / Week / Month / Year) — reads as "Every [3] [Days]". The five presets are shortcuts into this same model (Daily = every 1 day, Every 3 months = every 3 months) — picking a preset is the fast path; Custom is for anything else (every 2 days, every 8 hours for meds, every 2 years).
+3. **When** — first/next date (date picker, defaults to today). Optional "Add time" link reveals a time picker; dates without time are the norm. Hour-based custom intervals require a time (shown automatically, no need to tap "Add time").
 
 Primary button: "Save". Node appears on the road immediately.
 
@@ -51,7 +51,7 @@ Primary button: "Save". Node appears on the road immediately.
 
 ## On the road (implements 009 Phase 2)
 
-- **Planned node ○**: icon + title + date (+ time if set) + countdown ("in 3 days"); future part, nearest to today closest to the marker
+- **Planned node ○**: icon + title + date (+ time if set) + countdown ("in 3 days", "in 6 hours" for hour-based intervals); future part, nearest to today closest to the marker
 - **Suggestions ◌** (the "what to track" message): when the pet has **zero planned activities**, the future part shows up to 3 template suggestion nodes (dashed) with hint copy: *"Add activities you want to track — vet visits, treatments, grooming"*. As soon as one activity exists, suggestions disappear; templates remain inside the add sheet.
 - **Overdue**: due date passed without completion → node stays just above "today" with an amber "Overdue" label; still tappable to complete
 - **Completed node ✓**: lands in history at completion time; tap → details with report
@@ -60,7 +60,7 @@ Primary button: "Save". Node appears on the road immediately.
 
 Tap a planned node → bottom sheet: title, icon, schedule, next date.
 - **Mark done** (primary) → same sheet switches to confirm state: optional note + optional photo, "Done" button → ✓ node in history; repeating activity spawns its next occurrence
-- **Edit** — change title, date, recurrence
+- **Edit** — change title, date, recurrence (preset or custom N + unit)
 - **Delete** — confirmation: "Delete this activity? Its history stays." Past completions remain on the road.
 
 Completing an activity fires the achievement check (013, Забота category).
@@ -73,8 +73,9 @@ Completing an activity fires the achievement check (013, Забота category).
 - [ ] Sheet opens from "＋ Plan" and from suggestion nodes
 - [ ] Template tap prefills title, icon, and recurrence
 - [ ] Custom title possible via "Custom" chip
-- [ ] Recurrence options: Once, Daily, Weekly, Monthly, Every 3 months, Yearly
-- [ ] Date defaults to today; time optional and hidden behind "Add time"
+- [ ] Recurrence presets: Once, Daily, Weekly, Monthly, Every 3 months, Yearly
+- [ ] "Custom" recurrence reveals a number (≥1) + unit picker (Hour/Day/Week/Month/Year)
+- [ ] Date defaults to today; time optional and hidden behind "Add time" — except hour-based custom intervals, which always show a time
 - [ ] Save creates the activity; planned node appears on the road immediately
 
 ### Road
@@ -134,7 +135,7 @@ A flat list of upcoming planned activities across **all** the user's pets, neare
 ## Out of Scope
 - Push notifications / reminders (separate Platform spec; the road shows what's due)
 - Calendar screen or month view — deliberately never
-- Custom recurrence ("every 2 weeks", specific weekdays)
+- Specific weekdays recurrence ("every Monday and Thursday") — interval-based only (every N units), not calendar-position-based
 - Smart care rules (auto-suggesting "no vet visit in 12 months") — v2 of suggestions
 - Species-specific template sets
 - Editing or deleting individual past completions
